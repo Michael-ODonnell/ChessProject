@@ -18,15 +18,15 @@ namespace Gfi.Hiring
 		}
 
 		[Test]
-		public void Has_MaxBoardWidth_of_7()
+		public void Has_MaxBoardWidth_of_8()
 		{
-			Assert.That(ChessBoard.MaxBoardWidth, Is.EqualTo(7));
+			Assert.That(ChessBoard.MaxBoardWidth, Is.EqualTo(8));
 		}
 
 		[Test]
-		public void Has_MaxBoardHeight_of_7()
+		public void Has_MaxBoardHeight_of_8()
 		{
-			Assert.That(ChessBoard.MaxBoardHeight, Is.EqualTo(7));
+			Assert.That(ChessBoard.MaxBoardHeight, Is.EqualTo(8));
 		}
 
 		[Test]

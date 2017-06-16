@@ -2,8 +2,10 @@
 
 namespace Gfi.Hiring
 {
-    public class Pawn
+    public class Pawn : IPiece
     {
+        public const int Max = 8;
+
         private ChessBoard _chessBoard;
         private int _xCoordinate;
         private int _yCoordinate;
@@ -40,7 +42,33 @@ namespace Gfi.Hiring
 
         public void Move(MovementType movementType, int newX, int newY)
         {
-            throw new NotImplementedException("Need to implement Pawn.Move()");
+            // no lateral movement for pawns
+            if(newX != XCoordinate)
+            {
+                return;
+            }
+            // switch to relative movement because easier to visualise
+            int yMove = newY - YCoordinate;
+            if(_pieceColor == PieceColor.Black)
+            {
+                MoveBlack(movementType, yMove);
+            }
+        }
+
+        private void MoveBlack(MovementType movementType, int yMove)
+        {
+            if (yMove == -1 || (YCoordinate == 7 && yMove == -2))
+            {
+                YCoordinate += yMove;
+            }
+        }
+
+        private void MoveWhite(MovementType movementType, int yMove)
+        {
+            if (yMove == 1 || (YCoordinate == 1 && yMove == 2))
+            {
+                YCoordinate += yMove;
+            }
         }
 
         public override string ToString()
