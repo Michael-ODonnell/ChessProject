@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using NSubstitute;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +8,11 @@ using System.Text;
 namespace Gfi.Hiring
 {
 	[TestFixture]
-	public class ChessBoard_Tests
-	{
-		private ChessBoard _chessBoard;
-
-		[SetUp]
-		public void SetUp()
+	public class ChessBoard_Tests : IChessBoard_Tests   
+	{        
+		protected override IChessBoard GetBoard()
 		{
-			_chessBoard = new ChessBoard();
+			return new ChessBoard();
 		}
 
 		[Test]
@@ -62,53 +60,6 @@ namespace Gfi.Hiring
 		{
 			var isValidPosition = _chessBoard.IsLegalBoardPosition(11, 0);
 			Assert.That(isValidPosition, Is.False);
-		}
-
-		[Test]
-		public void IsLegalBoardPosition_False_For_Negative_X_Values()
-		{
-			var isValidPosition = _chessBoard.IsLegalBoardPosition(-1, 5);
-			Assert.That(isValidPosition, Is.False);
-		}
-
-		[Test]
-		public void IsLegalBoardPosition_False_For_Negative_Y_Values()
-		{
-			var isValidPosition = _chessBoard.IsLegalBoardPosition(5, -1);
-			Assert.That(isValidPosition, Is.False);
-		}
-		[Test]
-		public void Avoids_Duplicate_Positioning()
-		{
-			IChessPiece firstPawn = new Pawn(_chessBoard, PieceColor.Black);
-			IChessPiece secondPawn = new Pawn(_chessBoard, PieceColor.Black);
-			_chessBoard.AddPiece(firstPawn, 6, 3);
-			_chessBoard.AddPiece(secondPawn, 6, 3);
-			Assert.That(firstPawn.XCoordinate, Is.EqualTo(6));
-			Assert.That(firstPawn.YCoordinate, Is.EqualTo(3));
-			Assert.That(secondPawn.XCoordinate, Is.EqualTo(-1));
-			Assert.That(secondPawn.YCoordinate, Is.EqualTo(-1));
-		}
-
-		[Test]
-		public void Limits_The_Number_Of_Pawns()
-		{
-			for (int i = 0; i < 10; i++)
-			{
-				IChessPiece pawn = new Pawn(_chessBoard, PieceColor.Black);
-				int row = i / ChessBoard.MaxBoardWidth;
-				_chessBoard.AddPiece(pawn, 6 + row, i % ChessBoard.MaxBoardWidth);
-				if (row < 1)
-				{
-					Assert.That(pawn.XCoordinate, Is.EqualTo(6 + row));
-					Assert.That(pawn.YCoordinate, Is.EqualTo(i % ChessBoard.MaxBoardWidth));
-				}
-				else
-				{
-					Assert.That(pawn.XCoordinate, Is.EqualTo(-1));
-					Assert.That(pawn.YCoordinate, Is.EqualTo(-1));
-				}
-			}
 		}
 	}
 }

@@ -6,9 +6,9 @@ using System.Text;
 namespace Gfi.Hiring {
     public class ChessPiece : IChessPiece {
 
-        protected ChessBoard _chessBoard;
+        protected IChessBoard _chessBoard;
 
-        public ChessPiece(ChessBoard board, PieceType type, PieceColor color)
+        public ChessPiece(IChessBoard board, PieceType type, PieceColor color)
         {
             _chessBoard = board;
             Type = type;
