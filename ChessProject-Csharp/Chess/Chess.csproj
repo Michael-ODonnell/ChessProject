@@ -65,7 +65,9 @@
     <Compile Include="Tests\ChessBoard_Tests.cs" />
     <Compile Include="Tests\ChessPiece_Tests.cs" />
     <Compile Include="Tests\IChessBoard_Tests.cs" />
+    <Compile Include="Tests\IPawn_Tests.cs" />
     <Compile Include="Tests\IChessPiece_Tests.cs" />
+    <Compile Include="Tests\Pawn_IPawn_Tests.cs" />
     <Compile Include="Tests\Rules\CannotMoveThroughPiecesRule_Tests.cs" />
     <Compile Include="Tests\Rules\ValidPawnMoveRule_Tests.cs" />
     <Compile Include="Tests\Rules\CannotMoveToSameSquareRule_Tests.cs" />

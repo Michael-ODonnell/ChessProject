@@ -2,7 +2,7 @@
 
 namespace Gfi.Hiring
 {
-    public class Pawn : ChessPiece
+    public class Pawn : ChessPiece, IPawn
     {
         public const int Max = 8;
 
@@ -10,6 +10,8 @@ namespace Gfi.Hiring
         {
 
         }
+
+        public int FirstMovedOn { get { throw new NotImplementedException(); } }
 
         private static IRule[] PawnRules()
         {
@@ -21,7 +23,6 @@ namespace Gfi.Hiring
                 new ValidPawnMoveRule()
             };
         }
-
         public override string ToString()
         {
             return CurrentPositionAsString();
