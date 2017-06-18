@@ -6,15 +6,21 @@ using System.Text;
 namespace Gfi.Hiring {
     public class ChessPiece : IChessPiece {
 
-        protected IChessBoard _chessBoard;
+        /// <summary>
+        /// Rules governing behaviour of the piece
+        /// </summary>
+        private IRule[] m_Rules;
 
-        public ChessPiece(IChessBoard board, PieceType type, PieceColor color)
+        protected IChessBoard _chessBoard;
+        
+        public ChessPiece(IChessBoard board, PieceType type, PieceColor color, IRule[] rules)
         {
             _chessBoard = board;
             Type = type;
             Color = color;
             XCoordinate = ChessBoard.OffBoardCoordinate;
             YCoordinate = ChessBoard.OffBoardCoordinate;
+            m_Rules = rules;
         }
 
         public PieceColor Color { get; private set; }

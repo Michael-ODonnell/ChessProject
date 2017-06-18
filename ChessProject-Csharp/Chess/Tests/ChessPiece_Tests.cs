@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using NSubstitute;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,13 @@ namespace Gfi.Hiring
 			return CreatePiece(PieceType.Pawn, color);
 		}
 
-		protected ChessPiece CreatePiece (PieceType type, PieceColor color)
+		protected ChessPiece CreatePiece (PieceType type, PieceColor color, IRule[] rules = null)
 		{
-			return new ChessPiece(_chessBoard, type, color);
+			if(rules == null)
+			{
+				rules = new IRule[0];
+			}
+			return new ChessPiece(_chessBoard, type, color, rules);
 		}
 
 		[Test]
@@ -84,6 +89,45 @@ namespace Gfi.Hiring
 			IChessPiece piece = CreatePiece(PieceType.Pawn, PieceColor.Black);
 			piece.Move(MovementType.Move, 0, 0);
 			Assert.That(piece.YCoordinate, Is.EqualTo(0));
-		}
-	}
+        }
+
+        [Test]
+        public void ChessPiece_Move_Returns_False_On_Rule_Violation()
+        {
+            var failRule = Substitute.For<IRule>();
+            var board = Substitute.For<IChessBoard>();
+            IChessPiece piece = new ChessPiece(board, PieceType.Pawn, PieceColor.Black, new IRule[1] { failRule });
+
+            failRule.IsMoveValid(board, null).ReturnsForAnyArgs(false);
+            board.AddPiece(Arg.Any<IChessPiece>(), 
+                Arg.Do<int>(x => piece.XCoordinate = x), 
+                Arg.Do<int>(y => piece.YCoordinate = y));
+
+            board.IsLegalBoardPosition(Arg.Any<int>(), Arg.Any<int>()).Returns(true);
+
+            board.AddPiece(piece, 0, 0);            
+            Assert.IsFalse(piece.Move(MovementType.Move, 1, 1));
+        }
+
+        [Test]
+        public void ChessPiece_Does_Not_Move_On_Rule_Violation()
+        {
+            var failRule = Substitute.For<IRule>();
+            var board = Substitute.For<IChessBoard>();
+            IChessPiece piece = new ChessPiece(board, PieceType.Pawn, PieceColor.Black, new IRule[1] { failRule });
+
+            failRule.IsMoveValid(board, null).ReturnsForAnyArgs(false);
+            board.AddPiece(Arg.Any<IChessPiece>(),
+                Arg.Do<int>(x => piece.XCoordinate = x),
+                Arg.Do<int>(y => piece.YCoordinate = y));
+
+            board.IsLegalBoardPosition(Arg.Any<int>(), Arg.Any<int>()).Returns(true);
+
+            board.AddPiece(piece, 0, 0);
+            piece.Move(MovementType.Move, 1, 1);
+
+            Assert.That(piece.XCoordinate, Is.EqualTo(0));
+            Assert.That(piece.YCoordinate, Is.EqualTo(0));
+        }
+    }
 }

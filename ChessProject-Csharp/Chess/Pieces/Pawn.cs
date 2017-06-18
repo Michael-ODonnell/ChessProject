@@ -6,7 +6,7 @@ namespace Gfi.Hiring
     {
         public const int Max = 8;
 
-        public Pawn(IChessBoard board, PieceColor pieceColor) : base(board, PieceType.Pawn, pieceColor)
+        public Pawn(IChessBoard board, PieceColor pieceColor, IRule[] rules) : base(board, PieceType.Pawn, pieceColor, rules)
         {
         }
 

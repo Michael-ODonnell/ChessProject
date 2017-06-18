@@ -49,10 +49,12 @@
   <ItemGroup>
     <Compile Include="Interfaces\IChessBoard.cs" />
     <Compile Include="Interfaces\IChessPiece.cs" />
+    <Compile Include="Interfaces\IRule.cs" />
     <Compile Include="Pieces\ChessPiece.cs" />
     <Compile Include="Pieces\Pawn.cs" />
     <Compile Include="Pieces\PieceColor.cs" />
     <Compile Include="Pieces\PieceType.cs" />
+    <Compile Include="Move.cs" />
     <Compile Include="Tests\ChessBoard_Tests.cs" />
     <Compile Include="Tests\ChessPiece_Tests.cs" />
     <Compile Include="Tests\IChessBoard_Tests.cs" />
@@ -64,6 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Rules\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
