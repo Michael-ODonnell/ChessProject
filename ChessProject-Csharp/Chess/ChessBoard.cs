@@ -69,11 +69,10 @@ namespace Gfi.Hiring
             pawn.YCoordinate = OffBoardCoordinate;
         }
         
-        public int CurrentTurn { get; private set; }
-
         public bool TryGetPieceOn(int x, int y, out IChessPiece piece)
         {
-            throw new NotImplementedException();
+            piece = pieces[x, y];
+            return (piece != null);
         }
 
 
