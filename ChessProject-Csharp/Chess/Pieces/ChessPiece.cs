@@ -6,56 +6,35 @@ using System.Text;
 namespace Gfi.Hiring {
     internal class ChessPiece : IChessPiece {
 
-        public ChessPiece(PieceType type, PieceColor color)
+        private ChessBoard _chessboard;
+
+        public ChessPiece(ChessBoard board, PieceType type, PieceColor color)
         {
-            throw new NotImplementedException();
+            _chessboard = board;
+            Type = type;
+            Color = color;
+            XCoordinate = ChessBoard.OffBoardCoordinate;
+            YCoordinate = ChessBoard.OffBoardCoordinate;
         }
 
-        public PieceColor Color
+        public PieceColor Color { get; private set; }
+
+        public PieceType Type { get; private set; }
+
+        public int XCoordinate { get; set; }
+
+        public int YCoordinate { get; set; }
+
+        public bool Move(MovementType type, int newXCoordinate, int newYCoordinate)
         {
-            get
+            if (_chessboard.IsLegalBoardPosition(newXCoordinate, newYCoordinate))
             {
-                throw new NotImplementedException();
-            }
-        }
-
-        public PieceType Type
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public int XCoordinate
-        {
-            get
-            {
-                throw new NotImplementedException();
+                XCoordinate = newXCoordinate;
+                YCoordinate = newYCoordinate;
+                return true;
             }
 
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public int YCoordinate
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public bool Move(MovementType type, int x, int y)
-        {
-            throw new NotImplementedException();
+            return false;
         }
     }
 }

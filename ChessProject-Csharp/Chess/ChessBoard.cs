@@ -14,7 +14,7 @@ namespace Gfi.Hiring
         
         public ChessBoard ()
         {
-            pieces = new Pawn[MaxBoardWidth+1, MaxBoardHeight+1];
+            pieces = new IChessPiece[MaxBoardWidth+1, MaxBoardHeight+1];
 
             piecesOnBoard = new List<IChessPiece>[6, 2];
             for (int type = 0; type < 6; ++type)
