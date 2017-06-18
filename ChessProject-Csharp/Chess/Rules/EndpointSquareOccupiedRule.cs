@@ -7,7 +7,9 @@ namespace Gfi.Hiring {
     class EndpointSquareOccupiedRule : IRule {
         public bool IsMoveValid(IChessBoard board, Move move)
         {
-            throw new NotImplementedException();
+            IChessPiece capture;
+            bool occupied = board.TryGetPieceOn(move.EndingX, move.EndingY, out capture);
+            return !occupied || move.Piece.Color != capture.Color;
         }
     }
 }
