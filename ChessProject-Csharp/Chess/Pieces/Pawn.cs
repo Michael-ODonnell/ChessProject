@@ -6,50 +6,20 @@ namespace Gfi.Hiring
     {
         public const int Max = 8;
 
-        public Pawn(IChessBoard board, PieceColor pieceColor, IRule[] rules) : base(board, PieceType.Pawn, pieceColor, rules)
+        public Pawn(IChessBoard board, PieceColor pieceColor) : base(board, PieceType.Pawn, pieceColor, PawnRules())
         {
+
         }
 
-        public override bool Move(MovementType movementType, int newX, int newY)
+        private static IRule[] PawnRules()
         {
-            if (!_chessBoard.IsLegalBoardPosition(newX, newY)) { 
-                return false;
-            }
-            // no lateral movement for pawns
-            if(newX != XCoordinate)
-            {
-                return false;
-            }
-            // switch to relative movement because easier to visualise
-            int yMove = newY - YCoordinate;
-            if(Color == PieceColor.Black)
-            {
-                return MoveBlack(movementType, yMove);
-            }
-            else
-            {
-                return MoveWhite(movementType, yMove);
-            }
-        }
-
-        private bool MoveBlack(MovementType movementType, int yMove)
-        {
-            if (yMove == -1 || (YCoordinate == 7 && yMove == -2))
-            {
-                YCoordinate += yMove;
-                return true;
-            }
-            return false;
-        }
-
-        private bool MoveWhite(MovementType movementType, int yMove)
-        {
-            if (yMove == 1 || (YCoordinate == 1 && yMove == 2))
-            {
-                YCoordinate += yMove;
-                return true;
-            }
-            return false;
+            return new IRule[] {
+                new EndpointSquareOccupiedRule(),
+                new CannotMoveToSameSquareRule(),
+                new EndpointSquareOccupiedRule(), 
+                new CannotMoveThroughPiecesRule(),
+                new ValidPawnMoveRule()
+            };
         }
 
         public override string ToString()

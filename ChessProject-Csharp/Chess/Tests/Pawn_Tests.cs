@@ -12,7 +12,7 @@ namespace Gfi.Hiring
 		
 		protected override IChessPiece GetPiece(PieceColor color)
 		{
-			return new Pawn(_chessBoard, color, new IRule[0]);
+			return new Pawn(_chessBoard, color);
 		}
 
 		[Test]
