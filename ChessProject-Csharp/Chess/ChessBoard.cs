@@ -3,11 +3,22 @@ using System.Collections.Generic;
 
 namespace Gfi.Hiring
 {
+    /// <summary>
+    /// Area where the game is played
+    /// </summary>
     public class ChessBoard : IChessBoard
     {
         public static readonly int MaxBoardWidth = 8;
         public static readonly int MaxBoardHeight = 8;
+
+        /// <summary>
+        /// Coordinates used to indicate when a piece is not on the board.
+        /// </summary>
         public const int OffBoardCoordinate = -1;
+
+        /// <summary>
+        /// Array of game squares.  Empty squares should contain null
+        /// </summary>
         private IChessPiece[,] pieces;
 
         public int Width {  get { return MaxBoardWidth; } }
@@ -170,6 +181,11 @@ namespace Gfi.Hiring
             }
 
             return true;
+        }
+
+        public void UpdateBoard(Move move)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

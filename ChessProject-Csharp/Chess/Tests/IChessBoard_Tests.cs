@@ -108,6 +108,8 @@ namespace Gfi.Hiring {
             Assert.IsNull(piece);
         }
 
+        #region Path Tests
+
         [Test]
         public void Is_Straight_Clear_Path_Between_Returns_True_On_Clear_Path_X_Equals_C()
         {
@@ -244,6 +246,44 @@ namespace Gfi.Hiring {
             _chessBoard.AddPiece(pawn, 0, 0);
             Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, pawn.XCoordinate + 1, pawn.YCoordinate + 2));
             Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, pawn.XCoordinate + 2, pawn.YCoordinate + 1));
+        }
+        #endregion
+
+        [Test]
+        public void Update_Board_Removes_Piece_From_Old_Position()
+        {
+            var pawn = Substitute.For<IChessPiece>();
+            _chessBoard.AddPiece(pawn, 0, 1);
+            _chessBoard.UpdateBoard(new Move(pawn, 0, 1, 0, 3));
+
+            IChessPiece foundPiece;
+            Assert.IsFalse(_chessBoard.TryGetPieceOn(0, 1, out foundPiece));
+            Assert.IsNull(foundPiece);
+        }
+
+        [Test]
+        public void Update_Board_Adds_Piece_To_New_Position()
+        {
+            var pawn = Substitute.For<IChessPiece>();
+            _chessBoard.AddPiece(pawn, 0, 1);
+            _chessBoard.UpdateBoard(new Move(pawn, 0, 1, 0, 3));
+
+            IChessPiece foundPiece;
+            Assert.IsTrue(_chessBoard.TryGetPieceOn(0, 3, out foundPiece));
+            Assert.AreSame(pawn, foundPiece);
+        }
+
+        [Test]
+        public void Update_Board_Removes_Captured_Piece_From_Board()
+        {
+            var pawn = Substitute.For<IChessPiece>();
+            _chessBoard.AddPiece(pawn, 0, 1);
+            var capturedPawn = Substitute.For<IChessPiece>();
+            _chessBoard.AddPiece(capturedPawn, 1, 2);
+            _chessBoard.UpdateBoard(new Move(pawn, 0, 1, 1, 2));
+
+            Assert.AreEqual(ChessBoard.OffBoardCoordinate, capturedPawn.XCoordinate);
+            Assert.AreEqual(ChessBoard.OffBoardCoordinate, capturedPawn.YCoordinate);
         }
     }
 }

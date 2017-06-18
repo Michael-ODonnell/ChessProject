@@ -4,15 +4,29 @@ using System.Linq;
 using System.Text;
 
 namespace Gfi.Hiring {
+
+    /// <summary>
+    /// Constructs pieces. Centralises the addition of rules to pieces
+    /// </summary>
     internal class PieceFactory {
 
         private IChessBoard _board;
 
+        /// <summary>
+        /// One factory per board.
+        /// </summary>
+        /// <param name="board"></param>
         public PieceFactory (IChessBoard board)
         {
             _board = board;
         }
 
+        /// <summary>
+        /// Create an instance of a type of piece with the associated default ruleset
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="color"></param>
+        /// <returns></returns>
         public IChessPiece Build(PieceType type, PieceColor color)
         {
             switch (type)
@@ -24,6 +38,11 @@ namespace Gfi.Hiring {
             }
         }
 
+        /// <summary>
+        /// Creates a default pawn
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
         private IChessPiece CreatePawn(PieceColor color)
         {
             Pawn pawn = new Pawn(_board, color);

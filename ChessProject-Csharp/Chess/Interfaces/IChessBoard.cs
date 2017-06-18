@@ -29,6 +29,12 @@ namespace Gfi.Hiring {
         bool AddPiece(IChessPiece piece, int x, int y);
 
         /// <summary>
+        /// Repositions a piece on the board.  Any pieces in the endpoint will be removed from the board
+        /// </summary>
+        /// <returns></returns>
+        void UpdateBoard(Move move);
+
+        /// <summary>
         /// checks if the x, y coordinates are on the board
         /// </summary>
         /// <param name="x"></param>

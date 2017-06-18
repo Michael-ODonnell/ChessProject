@@ -81,16 +81,18 @@ namespace Gfi.Hiring
 		public void ChessPiece_Move_Sets_X_Coordinate_For_Valid_Move()
 		{
 			IChessPiece piece = CreatePiece(PieceType.Pawn, PieceColor.Black);
-			piece.Move(MovementType.Move, 0, 0);
-			Assert.That(piece.XCoordinate, Is.EqualTo(0));
+            _chessBoard.AddPiece(piece, 3, 6);
+			piece.Move(MovementType.Move, 3, 4);
+			Assert.That(piece.XCoordinate, Is.EqualTo(3));
 		}
 
 		[Test]
 		public void ChessPiece_Move_Sets_Y_Coordinate_For_Valid_Move()
 		{
 			IChessPiece piece = CreatePiece(PieceType.Pawn, PieceColor.Black);
-			piece.Move(MovementType.Move, 0, 0);
-			Assert.That(piece.YCoordinate, Is.EqualTo(0));
+            _chessBoard.AddPiece(piece, 3, 6);
+            piece.Move(MovementType.Move, 3, 4);
+            Assert.That(piece.YCoordinate, Is.EqualTo(4));
         }
 
         [Test]

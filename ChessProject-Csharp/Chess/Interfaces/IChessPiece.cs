@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 
 namespace Gfi.Hiring {
+    /// <summary>
+    /// Defines the behaviour required of a piece implementation.
+    /// </summary>
     public interface IChessPiece {
         int XCoordinate { get; set; }
         int YCoordinate { get; set; }
