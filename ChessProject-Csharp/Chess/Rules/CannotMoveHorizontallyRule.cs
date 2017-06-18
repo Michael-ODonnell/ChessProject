@@ -10,7 +10,7 @@ namespace Gfi.Hiring {
     class CannotMoveHorizontallyRule : IRule {
         public bool IsMoveValid(IChessBoard board, Move move)
         {
-            throw new NotImplementedException();
+            return move.StartingY == move.EndingY;
         }
     }
 }

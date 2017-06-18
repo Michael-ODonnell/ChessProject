@@ -7,7 +7,7 @@ namespace Gfi.Hiring {
     class CannotMoveToSameSquareRule : IRule {
         public bool IsMoveValid(IChessBoard board, Move move)
         {
-            throw new NotImplementedException();
+            return move.StartingX != move.EndingX || move.StartingY != move.EndingY;
         }
     }
 }
