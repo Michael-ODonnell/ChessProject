@@ -7,7 +7,7 @@ namespace Gfi.Hiring {
     class MoveEndpointOnBoardRule : IRule {
         public bool IsMoveValid(IChessBoard board, Move move)
         {
-            throw new NotImplementedException();
+            return board.IsLegalBoardPosition(move.EndingX, move.EndingY);
         }
     }
 }
