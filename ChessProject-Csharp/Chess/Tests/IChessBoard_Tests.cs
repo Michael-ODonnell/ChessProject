@@ -235,5 +235,15 @@ namespace Gfi.Hiring {
             _chessBoard.AddPiece(blocker, 1, _chessBoard.Width - 2);
             Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, 0, _chessBoard.Width));
         }
+
+        [Test]
+        public void Is_Straight_Clear_Path_Between_Returns_False_On_Unaligned_Paths()
+        {
+            var pawn = Substitute.For<IChessPiece>();
+            var blocker = Substitute.For<IChessPiece>();
+            _chessBoard.AddPiece(pawn, 0, 0);
+            Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, pawn.XCoordinate + 1, pawn.YCoordinate + 2));
+            Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, pawn.XCoordinate + 2, pawn.YCoordinate + 1));
+        }
     }
 }
