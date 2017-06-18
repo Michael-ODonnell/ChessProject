@@ -14,7 +14,7 @@ namespace Gfi.Hiring
 			return CreatePiece(PieceType.Pawn, color);
 		}
 
-		private ChessPiece CreatePiece (PieceType type, PieceColor color)
+		protected ChessPiece CreatePiece (PieceType type, PieceColor color)
 		{
 			return new ChessPiece(_chessBoard, type, color);
 		}

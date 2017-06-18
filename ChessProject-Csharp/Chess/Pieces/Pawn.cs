@@ -2,49 +2,19 @@
 
 namespace Gfi.Hiring
 {
-    public class Pawn : IChessPiece
+    public class Pawn : ChessPiece
     {
         public const int Max = 8;
 
-        private ChessBoard _chessBoard;
-        private int _xCoordinate;
-        private int _yCoordinate;
-        private PieceColor _pieceColor;
-        
-        public ChessBoard ChessBoard
+        public Pawn(ChessBoard board, PieceColor pieceColor) : base(board, PieceType.Pawn, pieceColor)
         {
-            get { return _chessBoard; }
-            set { _chessBoard = value; }
         }
 
-        public int XCoordinate
+        public override bool Move(MovementType movementType, int newX, int newY)
         {
-            get { return _xCoordinate; }
-            set { _xCoordinate = value; }
-        }
-        
-        public int YCoordinate
-        {
-            get { return _yCoordinate; }
-            set { _yCoordinate = value; }
-        }
-
-        public PieceColor PieceColor
-        {
-            get { return _pieceColor; }
-            private set { _pieceColor = value; }
-        }
-
-        public Pawn(PieceColor pieceColor)
-        {
-            _pieceColor = pieceColor;
-        }
-
-        public PieceType Type { get { return PieceType.Pawn; } }
-        public PieceColor Color { get { return _pieceColor; } }
-
-        public bool Move(MovementType movementType, int newX, int newY)
-        {
+            if (!_chessBoard.IsLegalBoardPosition(newX, newY)) { 
+                return false;
+            }
             // no lateral movement for pawns
             if(newX != XCoordinate)
             {
@@ -52,7 +22,7 @@ namespace Gfi.Hiring
             }
             // switch to relative movement because easier to visualise
             int yMove = newY - YCoordinate;
-            if(_pieceColor == PieceColor.Black)
+            if(Color == PieceColor.Black)
             {
                 return MoveBlack(movementType, yMove);
             }
@@ -89,7 +59,7 @@ namespace Gfi.Hiring
 
         protected string CurrentPositionAsString()
         {
-            return string.Format("Current X: {1}{0}Current Y: {2}{0}Piece Color: {3}", Environment.NewLine, XCoordinate, YCoordinate, PieceColor);
+            return string.Format("Current X: {1}{0}Current Y: {2}{0}Piece Color: {3}", Environment.NewLine, XCoordinate, YCoordinate, Color);
         }
 
     }

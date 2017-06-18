@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 
 namespace Gfi.Hiring {
-    internal class ChessPiece : IChessPiece {
+    public class ChessPiece : IChessPiece {
 
-        private ChessBoard _chessboard;
+        protected ChessBoard _chessBoard;
 
         public ChessPiece(ChessBoard board, PieceType type, PieceColor color)
         {
-            _chessboard = board;
+            _chessBoard = board;
             Type = type;
             Color = color;
             XCoordinate = ChessBoard.OffBoardCoordinate;
@@ -25,9 +25,9 @@ namespace Gfi.Hiring {
 
         public int YCoordinate { get; set; }
 
-        public bool Move(MovementType type, int newXCoordinate, int newYCoordinate)
+        public virtual bool Move(MovementType type, int newXCoordinate, int newYCoordinate)
         {
-            if (_chessboard.IsLegalBoardPosition(newXCoordinate, newYCoordinate))
+            if (_chessBoard.IsLegalBoardPosition(newXCoordinate, newYCoordinate))
             {
                 XCoordinate = newXCoordinate;
                 YCoordinate = newYCoordinate;

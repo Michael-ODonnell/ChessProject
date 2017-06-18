@@ -8,11 +8,11 @@ namespace Gfi.Hiring
 {
 
 	[TestFixture]
-	public class Pawn_Tests : IChessPiece_Tests {
+	public class Pawn_Tests : ChessPiece_Tests {
         
         protected override IChessPiece GetPiece(PieceColor color)
         {
-            return new Pawn(color);
+            return new Pawn(_chessBoard, color);
         }
 
         [Test]

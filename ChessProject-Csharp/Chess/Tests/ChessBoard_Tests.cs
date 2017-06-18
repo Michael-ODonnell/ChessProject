@@ -80,8 +80,8 @@ namespace Gfi.Hiring
 		[Test]
 		public void Avoids_Duplicate_Positioning()
 		{
-			IChessPiece firstPawn = new Pawn(PieceColor.Black);
-			IChessPiece secondPawn = new Pawn(PieceColor.Black);
+			IChessPiece firstPawn = new Pawn(_chessBoard, PieceColor.Black);
+			IChessPiece secondPawn = new Pawn(_chessBoard, PieceColor.Black);
 			_chessBoard.Add(firstPawn, 6, 3, PieceColor.Black);
 			_chessBoard.Add(secondPawn, 6, 3, PieceColor.Black);
 			Assert.That(firstPawn.XCoordinate, Is.EqualTo(6));
@@ -95,7 +95,7 @@ namespace Gfi.Hiring
 		{
 			for (int i = 0; i < 10; i++)
 			{
-				IChessPiece pawn = new Pawn(PieceColor.Black);
+				IChessPiece pawn = new Pawn(_chessBoard, PieceColor.Black);
 				int row = i / ChessBoard.MaxBoardWidth;
 				_chessBoard.Add(pawn, 6 + row, i % ChessBoard.MaxBoardWidth, PieceColor.Black);
 				if (row < 1)
