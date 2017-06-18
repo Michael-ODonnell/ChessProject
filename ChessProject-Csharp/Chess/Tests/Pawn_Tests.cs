@@ -12,8 +12,14 @@ namespace Gfi.Hiring
 		
 		protected override IChessPiece GetPiece(PieceColor color)
 		{
-			return new Pawn(_chessBoard, color);
-		}
+            Pawn pawn = new Pawn(_chessBoard, color);
+            pawn.AddRule(new EndpointSquareOccupiedRule());
+            pawn.AddRule(new CannotMoveToSameSquareRule());
+            pawn.AddRule(new EndpointSquareOccupiedRule());
+            pawn.AddRule(new CannotMoveThroughPiecesRule());
+            pawn.AddRule(new ValidPawnMoveRule());
+            return pawn;
+        }
 
 		[Test]
 		public void Pawn_Move_IllegalCoordinates_Right_DoesNotMove()

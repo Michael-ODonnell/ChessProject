@@ -6,23 +6,12 @@ namespace Gfi.Hiring
     {
         public const int Max = 8;
 
-        public Pawn(IChessBoard board, PieceColor pieceColor) : base(board, PieceType.Pawn, pieceColor, PawnRules())
+        public Pawn(IChessBoard board, PieceColor pieceColor) : base(board, PieceType.Pawn, pieceColor)
         {
 
         }
 
         public int FirstMovedOn { get; private set; }
-
-        private static IRule[] PawnRules()
-        {
-            return new IRule[] {
-                new EndpointSquareOccupiedRule(),
-                new CannotMoveToSameSquareRule(),
-                new EndpointSquareOccupiedRule(), 
-                new CannotMoveThroughPiecesRule(),
-                new ValidPawnMoveRule()
-            };
-        }
 
         public override bool Move(MovementType type, int newXCoordinate, int newYCoordinate)
         {

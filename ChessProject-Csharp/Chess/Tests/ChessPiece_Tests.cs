@@ -23,7 +23,7 @@ namespace Gfi.Hiring
                 rules[0] = new MoveEndpointOnBoardRule();
 
             }
-			return new ChessPiece(_chessBoard, type, color, rules);
+			return new ChessPiece(_chessBoard, type, color);
 		}
 
 		[Test]
