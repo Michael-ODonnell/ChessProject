@@ -2,7 +2,7 @@
 
 namespace Gfi.Hiring
 {
-    public class Pawn : IPiece
+    public class Pawn : IChessPiece
     {
         public const int Max = 8;
 
@@ -40,35 +40,46 @@ namespace Gfi.Hiring
             _pieceColor = pieceColor;
         }
 
-        public void Move(MovementType movementType, int newX, int newY)
+        public PieceType Type { get { return PieceType.Pawn; } }
+        public PieceColor Color { get { return _pieceColor; } }
+
+        public bool Move(MovementType movementType, int newX, int newY)
         {
             // no lateral movement for pawns
             if(newX != XCoordinate)
             {
-                return;
+                return false;
             }
             // switch to relative movement because easier to visualise
             int yMove = newY - YCoordinate;
             if(_pieceColor == PieceColor.Black)
             {
-                MoveBlack(movementType, yMove);
+                return MoveBlack(movementType, yMove);
+            }
+            else
+            {
+                return MoveWhite(movementType, yMove);
             }
         }
 
-        private void MoveBlack(MovementType movementType, int yMove)
+        private bool MoveBlack(MovementType movementType, int yMove)
         {
             if (yMove == -1 || (YCoordinate == 7 && yMove == -2))
             {
                 YCoordinate += yMove;
+                return true;
             }
+            return false;
         }
 
-        private void MoveWhite(MovementType movementType, int yMove)
+        private bool MoveWhite(MovementType movementType, int yMove)
         {
             if (yMove == 1 || (YCoordinate == 1 && yMove == 2))
             {
                 YCoordinate += yMove;
+                return true;
             }
+            return false;
         }
 
         public override string ToString()

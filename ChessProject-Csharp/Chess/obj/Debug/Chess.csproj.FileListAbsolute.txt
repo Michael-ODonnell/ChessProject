@@ -1,7 +1,0 @@
-\\psf\Home\Documents\Chess\Chess\obj\Debug\Chess.csprojResolveAssemblyReference.cache
-\\psf\Home\Documents\Chess\Chess\bin\Debug\Gfi.Hiring.dll
-\\psf\Home\Documents\Chess\Chess\bin\Debug\Gfi.Hiring.pdb
-\\psf\Home\Documents\Chess\Chess\bin\Debug\nunit.framework.dll
-\\psf\Home\Documents\Chess\Chess\bin\Debug\nunit.framework.xml
-\\psf\Home\Documents\Chess\Chess\obj\Debug\Gfi.Hiring.dll
-\\psf\Home\Documents\Chess\Chess\obj\Debug\Gfi.Hiring.pdb
