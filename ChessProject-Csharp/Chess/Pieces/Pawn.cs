@@ -11,7 +11,7 @@ namespace Gfi.Hiring
 
         }
 
-        public int FirstMovedOn { get { throw new NotImplementedException(); } }
+        public int FirstMovedOn { get; private set; }
 
         private static IRule[] PawnRules()
         {
@@ -23,6 +23,16 @@ namespace Gfi.Hiring
                 new ValidPawnMoveRule()
             };
         }
+
+        public override bool Move(MovementType type, int newXCoordinate, int newYCoordinate)
+        {
+            if(FirstMovedOn == 0)
+            {
+                FirstMovedOn = _chessBoard.CurrentTurn;
+            }
+            return base.Move(type, newXCoordinate, newYCoordinate);
+        }
+
         public override string ToString()
         {
             return CurrentPositionAsString();
