@@ -33,6 +33,16 @@ namespace Gfi.Hiring {
 
         public virtual bool Move(MovementType type, int newXCoordinate, int newYCoordinate)
         {
+            Move move = new Move(this, XCoordinate, YCoordinate, newXCoordinate, newYCoordinate);
+
+            foreach (IRule rule in m_Rules)
+            {
+                if (!rule.IsMoveValid(_chessBoard, move))
+                {
+                    return false;
+                }
+            }
+
             if (_chessBoard.IsLegalBoardPosition(newXCoordinate, newYCoordinate))
             {
                 XCoordinate = newXCoordinate;
