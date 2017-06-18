@@ -19,8 +19,10 @@ namespace Gfi.Hiring
 		{
 			if(rules == null)
 			{
-				rules = new IRule[0];
-			}
+				rules = new IRule[1];
+                rules[0] = new MoveEndpointOnBoardRule();
+
+            }
 			return new ChessPiece(_chessBoard, type, color, rules);
 		}
 
@@ -76,7 +78,7 @@ namespace Gfi.Hiring
 		}
 
 		[Test]
-		public void ChessPiece_Move_Sets_X_Coordinate_For_Valid_Board_Position()
+		public void ChessPiece_Move_Sets_X_Coordinate_For_Valid_Move()
 		{
 			IChessPiece piece = CreatePiece(PieceType.Pawn, PieceColor.Black);
 			piece.Move(MovementType.Move, 0, 0);
@@ -84,7 +86,7 @@ namespace Gfi.Hiring
 		}
 
 		[Test]
-		public void ChessPiece_Move_Sets_Y_Coordinate_For_Valid_Board_Position()
+		public void ChessPiece_Move_Sets_Y_Coordinate_For_Valid_Move()
 		{
 			IChessPiece piece = CreatePiece(PieceType.Pawn, PieceColor.Black);
 			piece.Move(MovementType.Move, 0, 0);

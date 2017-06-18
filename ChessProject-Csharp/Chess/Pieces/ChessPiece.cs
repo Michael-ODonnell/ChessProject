@@ -43,14 +43,10 @@ namespace Gfi.Hiring {
                 }
             }
 
-            if (_chessBoard.IsLegalBoardPosition(newXCoordinate, newYCoordinate))
-            {
-                XCoordinate = newXCoordinate;
-                YCoordinate = newYCoordinate;
-                return true;
-            }
+            XCoordinate = newXCoordinate;
+            YCoordinate = newYCoordinate;
 
-            return false;
+            return true;
         }
     }
 }
