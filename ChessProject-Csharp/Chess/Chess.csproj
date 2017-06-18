@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IChessBoard.cs" />
     <Compile Include="Interfaces\IChessPiece.cs" />
     <Compile Include="Pieces\ChessPiece.cs" />
     <Compile Include="Pieces\Pawn.cs" />

@@ -21,14 +21,14 @@ namespace Gfi.Hiring {
         [Test]
         public void ChessBoard_Add_Sets_XCoordinate()
         {
-            _chessBoard.Add(_chessPiece, 6, 3, PieceColor.Black);
+            _chessBoard.AddPiece(_chessPiece, 6, 3);
             Assert.That(_chessPiece.XCoordinate, Is.EqualTo(6));
         }
 
         [Test]
         public void ChessBoard_Add_Sets_YCoordinate()
         {
-            _chessBoard.Add(_chessPiece, 6, 3, PieceColor.Black);
+            _chessBoard.AddPiece(_chessPiece, 6, 3);
             Assert.That(_chessPiece.YCoordinate, Is.EqualTo(3));
         }
     }

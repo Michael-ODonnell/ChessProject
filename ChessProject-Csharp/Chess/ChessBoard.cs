@@ -3,12 +3,15 @@ using System.Collections.Generic;
 
 namespace Gfi.Hiring
 {
-    public class ChessBoard
+    public class ChessBoard : IChessBoard
     {
         public static readonly int MaxBoardWidth = 8;
         public static readonly int MaxBoardHeight = 8;
         public const int OffBoardCoordinate = -1;
         private IChessPiece[,] pieces;
+
+        public int Width {  get { return MaxBoardWidth; } }
+        public int Height { get { return MaxBoardHeight; } }
 
         private List<IChessPiece>[,] piecesOnBoard; //int[type, color]
         
@@ -26,17 +29,17 @@ namespace Gfi.Hiring
             }
         }
 
-        public void Add(IChessPiece piece, int xCoordinate, int yCoordinate, PieceColor pieceColor)
+        public bool AddPiece(IChessPiece piece, int xCoordinate, int yCoordinate)
         {
             if (!IsLegalBoardPosition(xCoordinate, yCoordinate))
             {
                 RemoveFromBoard(piece);
-                return;
+                return false;
             }
-            if (piecesOnBoard[(int)PieceType.Pawn, (int)pieceColor].Count == Pawn.Max)
+            if (piecesOnBoard[(int)PieceType.Pawn, (int)piece.Color].Count == Pawn.Max)
             {
                 RemoveFromBoard(piece);
-                return;
+                return false;
             }
 
             if(pieces[xCoordinate, yCoordinate] == null)
@@ -44,24 +47,33 @@ namespace Gfi.Hiring
                 pieces[xCoordinate, yCoordinate] = piece;
                 piece.XCoordinate = xCoordinate;
                 piece.YCoordinate = yCoordinate;
-                piecesOnBoard[(int)PieceType.Pawn, (int)pieceColor].Add(piece);
+                piecesOnBoard[(int)PieceType.Pawn, (int)piece.Color].Add(piece);
+                return true;
             }
             else
             {
                 RemoveFromBoard(piece);
+                return false;
             }
         }
 
         public bool IsLegalBoardPosition(int xCoordinate, int yCoordinate)
         {
-            return (-1 < xCoordinate && xCoordinate <= MaxBoardHeight &&
-                -1 < yCoordinate && yCoordinate <= MaxBoardWidth);
+            return (-1 < xCoordinate && xCoordinate < Width &&
+                -1 < yCoordinate && yCoordinate < Height);
         }
 
         private void RemoveFromBoard(IChessPiece pawn)
         {
             pawn.XCoordinate = OffBoardCoordinate;
             pawn.YCoordinate = OffBoardCoordinate;
+        }
+        
+        public int CurrentTurn { get; private set; }
+
+        public bool TryGetPieceOn(int x, int y, out IChessPiece piece)
+        {
+            throw new NotImplementedException();
         }
 
 

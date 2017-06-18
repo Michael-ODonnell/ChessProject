@@ -82,8 +82,8 @@ namespace Gfi.Hiring
 		{
 			IChessPiece firstPawn = new Pawn(_chessBoard, PieceColor.Black);
 			IChessPiece secondPawn = new Pawn(_chessBoard, PieceColor.Black);
-			_chessBoard.Add(firstPawn, 6, 3, PieceColor.Black);
-			_chessBoard.Add(secondPawn, 6, 3, PieceColor.Black);
+			_chessBoard.AddPiece(firstPawn, 6, 3);
+			_chessBoard.AddPiece(secondPawn, 6, 3);
 			Assert.That(firstPawn.XCoordinate, Is.EqualTo(6));
 			Assert.That(firstPawn.YCoordinate, Is.EqualTo(3));
 			Assert.That(secondPawn.XCoordinate, Is.EqualTo(-1));
@@ -97,7 +97,7 @@ namespace Gfi.Hiring
 			{
 				IChessPiece pawn = new Pawn(_chessBoard, PieceColor.Black);
 				int row = i / ChessBoard.MaxBoardWidth;
-				_chessBoard.Add(pawn, 6 + row, i % ChessBoard.MaxBoardWidth, PieceColor.Black);
+				_chessBoard.AddPiece(pawn, 6 + row, i % ChessBoard.MaxBoardWidth);
 				if (row < 1)
 				{
 					Assert.That(pawn.XCoordinate, Is.EqualTo(6 + row));
