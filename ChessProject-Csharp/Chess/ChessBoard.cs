@@ -24,6 +24,9 @@ namespace Gfi.Hiring
         public int Width {  get { return MaxBoardWidth; } }
         public int Height { get { return MaxBoardHeight; } }
 
+        /// <summary>
+        /// Number of turns since game start.
+        /// </summary>
         public int CurrentTurn { get; private set; }
 
         private List<IChessPiece>[,] piecesOnBoard; //int[type, color]
@@ -44,6 +47,13 @@ namespace Gfi.Hiring
             CurrentTurn = 0;
         }
 
+        /// <summary>
+        /// Places a piece on the board
+        /// </summary>
+        /// <param name="piece"></param>
+        /// <param name="xCoordinate"></param>
+        /// <param name="yCoordinate"></param>
+        /// <returns></returns>
         public bool AddPiece(IChessPiece piece, int xCoordinate, int yCoordinate)
         {
             if (!IsLegalBoardPosition(xCoordinate, yCoordinate))
@@ -72,6 +82,12 @@ namespace Gfi.Hiring
             }
         }
 
+        /// <summary>
+        /// Checks whether a position lies in the board coordinate system.
+        /// </summary>
+        /// <param name="xCoordinate"></param>
+        /// <param name="yCoordinate"></param>
+        /// <returns></returns>
         public bool IsLegalBoardPosition(int xCoordinate, int yCoordinate)
         {
             return (-1 < xCoordinate && xCoordinate < Width &&
@@ -84,12 +100,32 @@ namespace Gfi.Hiring
             piece.YCoordinate = OffBoardCoordinate;
         }
         
+        /// <summary>
+        /// Tries to fetch the piece at the specified coordinates
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="piece"></param>
+        /// <returns></returns>
         public bool TryGetPieceOn(int x, int y, out IChessPiece piece)
         {
+            if(!IsLegalBoardPosition(x, y))
+            {
+                piece = null;
+                return false;
+            }
             piece = pieces[x, y];
             return (piece != null);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="xStart"></param>
+        /// <param name="yStart"></param>
+        /// <param name="xEnd"></param>
+        /// <param name="yEnd"></param>
+        /// <returns></returns>
         public bool IsStraightClearPathBetween(int xStart, int yStart, int xEnd, int yEnd)
         {
             if(!IsLegalBoardPosition(xStart, yStart))
@@ -183,8 +219,29 @@ namespace Gfi.Hiring
             return true;
         }
 
+        /// <summary>
+        /// Repositions a piece on the board.  Any pieces in the endpoint will be removed from the board
+        /// </summary>
+        /// <param name="move"></param>
         public void UpdateBoard(Move move)
         {
+            if(move.Piece == null)
+            {
+                return;
+            }
+
+            if(!IsLegalBoardPosition(move.StartingX , move.StartingY))
+            {
+                RemoveFromBoard(move.Piece);
+                return;
+            }
+
+            if (!IsLegalBoardPosition(move.EndingX, move.EndingY))
+            {
+                RemoveFromBoard(move.Piece);
+                return;
+            }
+
             pieces[move.StartingX, move.StartingY] = null;
             IChessPiece captured = pieces[move.EndingX, move.EndingY];
             pieces[move.EndingX, move.EndingY] = move.Piece;

@@ -31,7 +31,7 @@ namespace Gfi.Hiring {
         /// <summary>
         /// Repositions a piece on the board.  Any pieces in the endpoint will be removed from the board
         /// </summary>
-        /// <returns></returns>
+        /// <param name="move">Description of the move</param>
         void UpdateBoard(Move move);
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Gfi.Hiring {
         bool IsLegalBoardPosition(int x, int y);
         
         /// <summary>
-        /// returns true if there is a piece on x, y and assigns it to out var.  out var is null if there is no peice
+        /// returns true if there is a piece on x, y and assigns it to out var.  out var is null if there is no peice or coordinates are invalid
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
