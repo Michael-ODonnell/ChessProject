@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 
 namespace Gfi.Hiring {
+    /// <summary>
+    /// Checks that the piece being moved is allowed to occupy the endpoint
+    /// </summary>
     class EndpointSquareOccupiedRule : IRule {
         public bool IsMoveValid(IChessBoard board, Move move)
         {

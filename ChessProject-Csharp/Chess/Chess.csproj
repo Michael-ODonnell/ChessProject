@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IChessBoard.cs" />
+    <Compile Include="Interfaces\IPawn.cs" />
     <Compile Include="Interfaces\IChessPiece.cs" />
     <Compile Include="Interfaces\IRule.cs" />
     <Compile Include="Pieces\ChessPiece.cs" />
@@ -58,11 +59,13 @@
     <Compile Include="Rules\EndpointSquareOccupiedRule.cs" />
     <Compile Include="Rules\CannotMoveHorizontallyRule.cs" />
     <Compile Include="Rules\CannotMoveToSameSquareRule.cs" />
+    <Compile Include="Rules\ValidPawnMoveRule.cs" />
     <Compile Include="Rules\MoveEndpointOnBoardRule.cs" />
     <Compile Include="Tests\ChessBoard_Tests.cs" />
     <Compile Include="Tests\ChessPiece_Tests.cs" />
     <Compile Include="Tests\IChessBoard_Tests.cs" />
     <Compile Include="Tests\IChessPiece_Tests.cs" />
+    <Compile Include="Tests\Rules\ValidPawnMoveRule_Tests.cs" />
     <Compile Include="Tests\Rules\CannotMoveToSameSquareRuleTests.cs" />
     <Compile Include="Tests\Rules\EndpointSquareOccupiedRule_Tests.cs" />
     <Compile Include="Tests\Rules\CannotMoveHorizontallyRule_Tests.cs" />

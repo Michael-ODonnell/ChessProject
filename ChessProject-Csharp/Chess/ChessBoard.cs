@@ -13,6 +13,14 @@ namespace Gfi.Hiring
         public int Width {  get { return MaxBoardWidth; } }
         public int Height { get { return MaxBoardHeight; } }
 
+        public int CurrentTurn
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         private List<IChessPiece>[,] piecesOnBoard; //int[type, color]
         
         public ChessBoard ()

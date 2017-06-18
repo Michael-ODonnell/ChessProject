@@ -44,5 +44,10 @@ namespace Gfi.Hiring {
         /// <param name="piece"></param>
         /// <returns></returns>
         bool TryGetPieceOn(int x, int y, out IChessPiece piece);
+
+        /// <summary>
+        /// Current Turn Id.  0 on ititial board state, 1, during white first move, increments each turn
+        /// </summary>
+        int CurrentTurn { get; }
     }
 }

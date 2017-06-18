@@ -5,12 +5,13 @@ using System.Text;
 
 namespace Gfi.Hiring {
     /// <summary>
-    /// Checks that the move endpoint is on the board
+    /// Checks movement for pawns.  Includes checks for intial advancement, capture movement and En Passant
     /// </summary>
-    class MoveEndpointOnBoardRule : IRule {
+    class ValidPawnMoveRule : IRule {
+
         public bool IsMoveValid(IChessBoard board, Move move)
         {
-            return board.IsLegalBoardPosition(move.EndingX, move.EndingY);
+            throw new NotImplementedException();
         }
     }
 }
