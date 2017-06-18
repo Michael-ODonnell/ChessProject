@@ -34,9 +34,9 @@ namespace Gfi.Hiring
 
 			board.IsStraightClearPathBetween(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>()).Returns(false);
 
-			Move move = new Move(piece, 0, 0, 5, 0);
+			Move move = new Move(piece, 0, 0, 0, 5);
 			Assert.IsFalse(rule.IsMoveValid(board, move));
-            move = new Move(piece, 5, 0, 0, 0);
+            move = new Move(piece, 0, 5, 0, 0);
             Assert.IsFalse(rule.IsMoveValid(board, move));
         }
 
@@ -49,9 +49,9 @@ namespace Gfi.Hiring
 
             board.IsStraightClearPathBetween(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>()).Returns(true);
             
-            Move move = new Move(piece, 0, 0, 0, 5);
+            Move move = new Move(piece, 0, 0, 5, 0);
             Assert.IsTrue(rule.IsMoveValid(board, move));
-            move = new Move(piece, 0, 5, 0, 0);
+            move = new Move(piece, 5, 0, 0, 0);
             Assert.IsTrue(rule.IsMoveValid(board, move));
         }
 
@@ -64,9 +64,9 @@ namespace Gfi.Hiring
 
             board.IsStraightClearPathBetween(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>()).Returns(false);
 
-            Move move = new Move(piece, 0, 0, 0, 5);
+            Move move = new Move(piece, 0, 0, 5, 0);
             Assert.IsFalse(rule.IsMoveValid(board, move));
-            move = new Move(piece, 0, 5, 0, 0);
+            move = new Move(piece, 5, 0, 0, 0);
             Assert.IsFalse(rule.IsMoveValid(board, move));
         }
 

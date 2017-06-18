@@ -92,8 +92,6 @@ namespace Gfi.Hiring {
             // En Passant can only be applied on the next turn after the piece moves.
             IPawn pawn = targetPiece as IPawn;
             return board.CurrentTurn == pawn.FirstMovedOn + 1;
-
-            throw new NotImplementedException();
         }
     }
 }

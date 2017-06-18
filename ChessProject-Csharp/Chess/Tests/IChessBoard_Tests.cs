@@ -107,5 +107,133 @@ namespace Gfi.Hiring {
             _chessBoard.TryGetPieceOn(1, 0, out piece);
             Assert.IsNull(piece);
         }
+
+        [Test]
+        public void Is_Straight_Clear_Path_Between_Returns_True_On_Clear_Path_X_Equals_C()
+        {
+            var pawn = Substitute.For<IChessPiece>();
+            _chessBoard.AddPiece(pawn, 0, 0);
+            Assert.IsTrue(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, pawn.XCoordinate, _chessBoard.Height - 1));
+
+        }
+        [Test]
+        public void Is_Straight_Clear_Path_Between_Returns_True_On_Clear_Path_X_Equals_C_Inverted()
+        {
+            var pawn = Substitute.For<IChessPiece>();
+            _chessBoard.AddPiece(pawn, 1, _chessBoard.Height - 1);
+            Assert.IsTrue(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, pawn.XCoordinate, 0));
+        }
+
+        [Test]
+        public void Is_Straight_Clear_Path_Between_Returns_False_On_Blocked_Path_X_Equals_C()
+        {
+            var pawn = Substitute.For<IChessPiece>();
+            var blocker = Substitute.For<IChessPiece>();
+
+            _chessBoard.AddPiece(pawn, 0, 0);
+            _chessBoard.AddPiece(blocker, 0, 1);
+
+            Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, pawn.XCoordinate, _chessBoard.Height - 1));
+        }
+
+        [Test]
+        public void Is_Straight_Clear_Path_Between_Returns_False_On_Blocked_Path_X_Equals_C_Inverted()
+        {
+            var pawn = Substitute.For<IChessPiece>();
+            var blocker = Substitute.For<IChessPiece>();
+            _chessBoard.AddPiece(pawn, 1, _chessBoard.Height - 1);
+            _chessBoard.AddPiece(blocker, 1, 1);
+            Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, pawn.XCoordinate, 0));
+        }
+
+        [Test]
+        public void Is_Straight_Clear_Path_Between_Returns_True_On_Clear_Path_Y_Equals_C()
+        {
+            var pawn = Substitute.For<IChessPiece>();
+            _chessBoard.AddPiece(pawn, 0, 0);
+            Assert.IsTrue(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, _chessBoard.Width - 1, pawn.YCoordinate));
+
+        }
+        [Test]
+        public void Is_Straight_Clear_Path_Between_Returns_True_On_Clear_Path_Y_Equals_C_Inverted()
+        {
+            var pawn = Substitute.For<IChessPiece>();
+            _chessBoard.AddPiece(pawn, _chessBoard.Width - 1, 1);
+            Assert.IsTrue(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, 0, pawn.YCoordinate));
+        }
+
+        [Test]
+        public void Is_Straight_Clear_Path_Between_Returns_False_On_Blocked_Path_Y_Equals_C()
+        {
+            var pawn = Substitute.For<IChessPiece>();
+            var blocker = Substitute.For<IChessPiece>();
+
+            _chessBoard.AddPiece(pawn, 0, 0);
+            _chessBoard.AddPiece(blocker, 1, 0);
+
+            Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, _chessBoard.Width - 1, pawn.YCoordinate));
+        }
+
+        [Test]
+        public void Is_Straight_Clear_Path_Between_Returns_False_On_Blocked_Path_Y_Equals_C_Inverted()
+        {
+            var pawn = Substitute.For<IChessPiece>();
+            var blocker = Substitute.For<IChessPiece>();
+            _chessBoard.AddPiece(pawn, _chessBoard.Width - 1, 1);
+            _chessBoard.AddPiece(blocker, 1, 1);
+            Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, 0, pawn.YCoordinate));
+        }
+
+        [Test]
+        public void Is_Straight_Clear_Path_Between_Returns_True_On_Clear_Path_X_Equals_Y()
+        {
+            var pawn = Substitute.For<IChessPiece>();
+            _chessBoard.AddPiece(pawn, 0, 0);
+            Assert.IsTrue(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, _chessBoard.Width - 1, _chessBoard.Width - 1));
+        }
+
+        [Test]
+        public void Is_Straight_Clear_Path_Between_Returns_False_On_Blocked_Path_X_Equals_Y()
+        {
+            var pawn = Substitute.For<IChessPiece>();
+            var blocker = Substitute.For<IChessPiece>();
+
+            _chessBoard.AddPiece(pawn, 0, 0);
+            _chessBoard.AddPiece(blocker, 1, 1);
+
+            Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, _chessBoard.Width - 1, _chessBoard.Width - 1));
+        }
+
+        [Test]
+        public void Is_Straight_Clear_Path_Between_Returns_False_On_Blocked_Path_X_Equals_Y_inverted()
+        {
+            var pawn = Substitute.For<IChessPiece>();
+            var blocker = Substitute.For<IChessPiece>();
+            _chessBoard.AddPiece(pawn, _chessBoard.Width - 1, _chessBoard.Width - 1);
+            _chessBoard.AddPiece(blocker, 1, 1);
+            Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, 0, 0));
+        }
+
+        [Test]
+        public void Is_Straight_Clear_Path_Between_Returns_False_On_Blocked_Path_X_Equals_Minus_Y()
+        {
+            var pawn = Substitute.For<IChessPiece>();
+            var blocker = Substitute.For<IChessPiece>();
+
+            _chessBoard.AddPiece(pawn, 0, _chessBoard.Width - 1);
+            _chessBoard.AddPiece(blocker, 1, _chessBoard.Width - 2);
+
+            Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, _chessBoard.Width - 1, 0));
+        }
+
+        [Test]
+        public void Is_Straight_Clear_Path_Between_Returns_False_On_Blocked_Path_X_Equals_Minus_Y_Inverted()
+        {
+            var pawn = Substitute.For<IChessPiece>();
+            var blocker = Substitute.For<IChessPiece>();
+            _chessBoard.AddPiece(pawn, _chessBoard.Width - 1, 0);
+            _chessBoard.AddPiece(blocker, 1, _chessBoard.Width - 2);
+            Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, 0, _chessBoard.Width));
+        }
     }
 }

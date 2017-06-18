@@ -60,6 +60,6 @@ namespace Gfi.Hiring
 		{
 			var isValidPosition = _chessBoard.IsLegalBoardPosition(11, 0);
 			Assert.That(isValidPosition, Is.False);
-		}
-	}
+        }
+    }
 }
