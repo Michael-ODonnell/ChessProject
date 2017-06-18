@@ -21,6 +21,11 @@ namespace Gfi.Hiring
             }
         }
 
+        public bool IsStraightClearPathBetween(int xStart, int yStart, int xEnd, int yEnd)
+        {
+            throw new NotImplementedException();
+        }
+
         private List<IChessPiece>[,] piecesOnBoard; //int[type, color]
         
         public ChessBoard ()
@@ -82,7 +87,5 @@ namespace Gfi.Hiring
             piece = pieces[x, y];
             return (piece != null);
         }
-
-
     }
 }

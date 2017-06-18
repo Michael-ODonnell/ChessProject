@@ -49,5 +49,16 @@ namespace Gfi.Hiring {
         /// Current Turn Id.  0 on ititial board state, 1, during white first move, increments each turn
         /// </summary>
         int CurrentTurn { get; }
+
+        /// <summary>
+        /// checks if there are no pieces between two points.  The points can be occupied, but no square in a straight line between them can be.
+        /// If the line is not of the form x=c, y=c, x=y or x=-y returns false.
+        /// </summary>
+        /// <param name="xStart"></param>
+        /// <param name="yStart"></param>
+        /// <param name="xEnd"></param>
+        /// <param name="yEnd"></param>
+        /// <returns></returns>
+        bool IsStraightClearPathBetween(int xStart, int yStart, int xEnd, int yEnd);
     }
 }
