@@ -45,13 +45,14 @@ namespace Gfi.Hiring {
         /// <returns></returns>
         private IChessPiece CreatePawn(PieceColor color)
         {
-            Pawn pawn = new Pawn(_board, color);
+            IRule[] pawnRules = new IRule[] {
+                new EndpointSquareOccupiedRule(),
+                new CannotMoveToSameSquareRule(),
+                new EndpointSquareOccupiedRule(),
+                new CannotMoveThroughPiecesRule(),
+                new ValidPawnMoveRule()};
+            Pawn pawn = new Pawn(_board, color, pawnRules);
 
-            pawn.AddRule(new EndpointSquareOccupiedRule());
-            pawn.AddRule(new CannotMoveToSameSquareRule());
-            pawn.AddRule(new EndpointSquareOccupiedRule());
-            pawn.AddRule(new CannotMoveThroughPiecesRule());
-            pawn.AddRule(new ValidPawnMoveRule());
             return pawn;
         }
     }

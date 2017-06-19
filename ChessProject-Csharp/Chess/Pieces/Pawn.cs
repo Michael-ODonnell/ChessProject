@@ -13,7 +13,7 @@ namespace Gfi.Hiring
         /// </summary>
         /// <param name="board">Board related to the game.</param>
         /// <param name="pieceColor">Which side the piece is on</param>
-        public Pawn(IChessBoard board, PieceColor pieceColor) : base(board, PieceType.Pawn, pieceColor)
+        public Pawn(IChessBoard board, PieceColor pieceColor, IRule[] rules) : base(board, PieceType.Pawn, pieceColor, rules)
         {
 
         }

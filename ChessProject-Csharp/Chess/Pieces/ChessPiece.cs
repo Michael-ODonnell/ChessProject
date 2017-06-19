@@ -14,17 +14,6 @@ namespace Gfi.Hiring {
         protected IChessBoard _chessBoard;
         
         /// <summary>
-        /// Constructor without rules governng piece behaviour
-        /// </summary>
-        /// <param name="board"></param>
-        /// <param name="type"></param>
-        /// <param name="color"></param>
-        public ChessPiece(IChessBoard board, PieceType type, PieceColor color)
-        {
-            Init(board, type, color, new IRule[0]);
-        }
-
-        /// <summary>
         /// Constructor with initial rules governing piece behaviour
         /// </summary>
         /// <param name="board">board the piece is to be placed on</param>
@@ -97,15 +86,6 @@ namespace Gfi.Hiring {
             _chessBoard.UpdateBoard(move);
 
             return true;
-        }
-
-        /// <summary>
-        /// Add a rule to a piece.
-        /// </summary>
-        /// <param name="rule">Rule constraining behaviour</param>
-        internal void AddRule(IRule rule)
-        {
-            _rules.Add(rule);
         }
     }
 }

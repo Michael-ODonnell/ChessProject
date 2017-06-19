@@ -11,14 +11,14 @@ namespace Gfi.Hiring
 	public class Pawn_Tests : ChessPiece_Tests {
 		
 		protected override IChessPiece GetPiece(PieceColor color)
-		{
-            Pawn pawn = new Pawn(_chessBoard, color);
-            pawn.AddRule(new EndpointSquareOccupiedRule());
-            pawn.AddRule(new CannotMoveToSameSquareRule());
-            pawn.AddRule(new EndpointSquareOccupiedRule());
-            pawn.AddRule(new CannotMoveThroughPiecesRule());
-            pawn.AddRule(new ValidPawnMoveRule());
-            return pawn;
+        {
+            IRule[] pawnRules = new IRule[] {
+                new EndpointSquareOccupiedRule(),
+                new CannotMoveToSameSquareRule(),
+                new EndpointSquareOccupiedRule(),
+                new CannotMoveThroughPiecesRule(),
+                new ValidPawnMoveRule()};
+            return new Pawn(_chessBoard, color, pawnRules);
         }
 
 		[Test]
