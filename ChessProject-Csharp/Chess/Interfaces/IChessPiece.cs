@@ -20,6 +20,6 @@ namespace Gfi.Hiring {
         /// <param name="newXCoordinate"></param>
         /// <param name="newYCoordinate"></param>
         /// <returns>True when the move was valid</returns>
-        bool Move(MovementType type, int newXCoordinate, int newYCoordinate);
+        bool Move(int newXCoordinate, int newYCoordinate);
     }
 }

@@ -82,7 +82,7 @@ namespace Gfi.Hiring
 		{
 			IChessPiece piece = CreatePiece(PieceType.Pawn, PieceColor.Black);
 			_chessBoard.AddPiece(piece, 3, 6);
-			piece.Move(MovementType.Move, 3, 4);
+			piece.Move(3, 4);
 			Assert.That(piece.XCoordinate, Is.EqualTo(3));
 		}
 
@@ -91,7 +91,7 @@ namespace Gfi.Hiring
 		{
 			IChessPiece piece = CreatePiece(PieceType.Pawn, PieceColor.Black);
 			_chessBoard.AddPiece(piece, 3, 6);
-			piece.Move(MovementType.Move, 3, 4);
+			piece.Move(3, 4);
 			Assert.That(piece.YCoordinate, Is.EqualTo(4));
 		}
 
@@ -110,7 +110,7 @@ namespace Gfi.Hiring
 			board.IsLegalBoardPosition(Arg.Any<int>(), Arg.Any<int>()).Returns(true);
 
 			board.AddPiece(piece, 0, 0);            
-			Assert.That(piece.Move(MovementType.Move, 1, 1), Is.False);
+			Assert.That(piece.Move(1, 1), Is.False);
 		}
 
 		[Test]
@@ -128,7 +128,7 @@ namespace Gfi.Hiring
 			board.IsLegalBoardPosition(Arg.Any<int>(), Arg.Any<int>()).Returns(true);
 
 			board.AddPiece(piece, 0, 0);
-			piece.Move(MovementType.Move, 1, 1);
+			piece.Move(1, 1);
 
 			Assert.That(piece.XCoordinate, Is.EqualTo(0));
 			Assert.That(piece.YCoordinate, Is.EqualTo(0));

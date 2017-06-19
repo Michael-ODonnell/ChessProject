@@ -9,6 +9,12 @@ namespace Gfi.Hiring {
     /// </summary>
     class ValidPawnMoveRule : IRule {
 
+        /// <summary>
+        /// Checks board state to see if the move is valid.
+        /// </summary>
+        /// <param name="board">Board state to validate against</param>
+        /// <param name="move">Move to be performed</param>
+        /// <returns>True if the move is legal.</returns>
         public bool IsMoveValid(IChessBoard board, Move move)
         {
             int forwardDirection = move.Piece.Color == PieceColor.White ? 1 : -1;

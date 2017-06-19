@@ -78,7 +78,6 @@
     <Compile Include="Tests\Rules\CannotMoveHorizontallyRule_Tests.cs" />
     <Compile Include="Tests\Rules\MoveEndpointOnBoardRule_Tests.cs" />
     <Compile Include="Tests\Pawn_Tests.cs" />
-    <Compile Include="MovementType.cs" />
     <Compile Include="ChessBoard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

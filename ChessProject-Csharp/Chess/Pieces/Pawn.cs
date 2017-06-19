@@ -26,17 +26,16 @@ namespace Gfi.Hiring
         /// <summary>
         /// Moves the piece.  Coordinates are only updated if the move is valid
         /// </summary>
-        /// <param name="type"></param>
         /// <param name="newXCoordinate"></param>
         /// <param name="newYCoordinate"></param>
         /// <returns>True when the move was valid</returns>
-        public override bool Move(MovementType type, int newXCoordinate, int newYCoordinate)
+        public override bool Move(int newXCoordinate, int newYCoordinate)
         {
             if(FirstMovedOn == 0)
             {
                 FirstMovedOn = _chessBoard.CurrentTurn;
             }
-            return base.Move(type, newXCoordinate, newYCoordinate);
+            return base.Move(newXCoordinate, newYCoordinate);
         }
 
         public override string ToString()

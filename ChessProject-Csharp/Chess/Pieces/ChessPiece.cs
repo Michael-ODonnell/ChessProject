@@ -27,10 +27,10 @@ namespace Gfi.Hiring {
         /// <summary>
         /// Constructor with initial rules governing piece behaviour
         /// </summary>
-        /// <param name="board"></param>
-        /// <param name="type"></param>
-        /// <param name="color"></param>
-        /// <param name="rules"></param>
+        /// <param name="board">board the piece is to be placed on</param>
+        /// <param name="type">The type of piece</param>
+        /// <param name="color">Which side the piece is on</param>
+        /// <param name="rules">Rules constraining piece behaviour and movement</param>
         public ChessPiece(IChessBoard board, PieceType type, PieceColor color, IRule[] rules)
         {
             Init(board, type, color, rules);
@@ -59,10 +59,10 @@ namespace Gfi.Hiring {
         /// <summary>
         /// Initialises the board variables for the constructors
         /// </summary>
-        /// <param name="board"></param>
-        /// <param name="type"></param>
-        /// <param name="color"></param>
-        /// <param name="rules"></param>
+        /// <param name="board">board the piece is to be placed on</param>
+        /// <param name="type">The type of piece</param>
+        /// <param name="color">Which side the piece is on</param>
+        /// <param name="rules">Rules constraining piece behaviour and movement</param>
         private void Init(IChessBoard board, PieceType type, PieceColor color, IRule[] rules)
         {
             _chessBoard = board;
@@ -76,11 +76,10 @@ namespace Gfi.Hiring {
         /// <summary>
         /// Moves a piece iff the move meets all the required rules for the piece.  Returns whehter the move happened
         /// </summary>
-        /// <param name="type"></param>
         /// <param name="newXCoordinate"></param>
         /// <param name="newYCoordinate"></param>
         /// <returns></returns>
-        public virtual bool Move(MovementType type, int newXCoordinate, int newYCoordinate)
+        public virtual bool Move(int newXCoordinate, int newYCoordinate)
         {
             Move move = new Move(this, XCoordinate, YCoordinate, newXCoordinate, newYCoordinate);
 
@@ -103,7 +102,7 @@ namespace Gfi.Hiring {
         /// <summary>
         /// Add a rule to a piece.
         /// </summary>
-        /// <param name="rule"></param>
+        /// <param name="rule">Rule constraining behaviour</param>
         internal void AddRule(IRule rule)
         {
             _rules.Add(rule);

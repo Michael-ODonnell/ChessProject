@@ -25,7 +25,7 @@ namespace Gfi.Hiring
 		public void Pawn_Move_IllegalCoordinates_Right_DoesNotMove()
 		{
 			_chessBoard.AddPiece(_chessPiece, 6, 3);
-			_chessPiece.Move(MovementType.Move, 7, 3);
+			_chessPiece.Move(7, 3);
 			Assert.That(_chessPiece.XCoordinate, Is.EqualTo(6));
 			Assert.That(_chessPiece.YCoordinate, Is.EqualTo(3));
 		}
@@ -34,7 +34,7 @@ namespace Gfi.Hiring
 		public void Pawn_Move_IllegalCoordinates_Left_DoesNotMove()
 		{
 			_chessBoard.AddPiece(_chessPiece, 6, 3);
-			_chessPiece.Move(MovementType.Move, 4, 3);
+			_chessPiece.Move(4, 3);
 			Assert.That(_chessPiece.XCoordinate, Is.EqualTo(6));
 			Assert.That(_chessPiece.YCoordinate, Is.EqualTo(3));
 		}
@@ -43,7 +43,7 @@ namespace Gfi.Hiring
 		public void Pawn_Move_LegalCoordinates_Forward_UpdatesCoordinates()
 		{
 			_chessBoard.AddPiece(_chessPiece, 6, 3);
-			_chessPiece.Move(MovementType.Move, 6, 2);
+			_chessPiece.Move(6, 2);
 			Assert.That(_chessPiece.XCoordinate, Is.EqualTo(6));
 			Assert.That(_chessPiece.YCoordinate, Is.EqualTo(2));
 		}
