@@ -79,19 +79,28 @@ namespace Gfi.Hiring
 
 		[Test]
 		public void ChessPiece_Move_Sets_X_Coordinate_For_Valid_Move()
-		{
-			IChessPiece piece = CreatePiece(PieceType.Pawn, PieceColor.Black);
-			_chessBoard.AddPiece(piece, 3, 6);
+        {
+            IChessPiece piece = CreatePiece(PieceType.Pawn, PieceColor.Black);
+            _chessBoard.AddPiece(Arg.Any<IChessPiece>(),
+                    Arg.Do<int>(x => piece.XCoordinate = x), 
+                    Arg.Do<int>(y => piece.YCoordinate = y)).Returns(true);
+
+            _chessBoard.AddPiece(piece, 3, 6);
 			piece.Move(3, 4);
 			Assert.That(piece.XCoordinate, Is.EqualTo(3));
 		}
 
 		[Test]
 		public void ChessPiece_Move_Sets_Y_Coordinate_For_Valid_Move()
-		{
-			IChessPiece piece = CreatePiece(PieceType.Pawn, PieceColor.Black);
-			_chessBoard.AddPiece(piece, 3, 6);
-			piece.Move(3, 4);
+        {
+            IChessPiece piece = CreatePiece(PieceType.Pawn, PieceColor.Black);
+            _chessBoard.AddPiece(Arg.Any<IChessPiece>(),
+                    Arg.Do<int>(x => piece.XCoordinate = x),
+                    Arg.Do<int>(y => piece.YCoordinate = y)).Returns(true);
+            _chessBoard.IsLegalBoardPosition(1,1).ReturnsForAnyArgs(true);
+
+            _chessBoard.AddPiece(piece, 3, 6);
+			bool didMove = piece.Move(3, 4);
 			Assert.That(piece.YCoordinate, Is.EqualTo(4));
 		}
 

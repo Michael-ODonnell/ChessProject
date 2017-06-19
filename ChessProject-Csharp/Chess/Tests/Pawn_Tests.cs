@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using NSubstitute;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,32 +21,5 @@ namespace Gfi.Hiring
                 new ValidPawnMoveRule()};
             return new Pawn(_chessBoard, color, pawnRules);
         }
-
-		[Test]
-		public void Pawn_Move_IllegalCoordinates_Right_DoesNotMove()
-		{
-			_chessBoard.AddPiece(_chessPiece, 6, 3);
-			_chessPiece.Move(7, 3);
-			Assert.That(_chessPiece.XCoordinate, Is.EqualTo(6));
-			Assert.That(_chessPiece.YCoordinate, Is.EqualTo(3));
-		}
-
-		[Test]
-		public void Pawn_Move_IllegalCoordinates_Left_DoesNotMove()
-		{
-			_chessBoard.AddPiece(_chessPiece, 6, 3);
-			_chessPiece.Move(4, 3);
-			Assert.That(_chessPiece.XCoordinate, Is.EqualTo(6));
-			Assert.That(_chessPiece.YCoordinate, Is.EqualTo(3));
-		}
-
-		[Test]
-		public void Pawn_Move_LegalCoordinates_Forward_UpdatesCoordinates()
-		{
-			_chessBoard.AddPiece(_chessPiece, 6, 3);
-			_chessPiece.Move(6, 2);
-			Assert.That(_chessPiece.XCoordinate, Is.EqualTo(6));
-			Assert.That(_chessPiece.YCoordinate, Is.EqualTo(2));
-		}
 	}
 }

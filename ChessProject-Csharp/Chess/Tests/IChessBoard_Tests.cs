@@ -313,5 +313,23 @@ namespace Gfi.Hiring {
             Assert.That(ChessBoard.OffBoardCoordinate, Is.EqualTo(capturedPawn.XCoordinate));
             Assert.That(ChessBoard.OffBoardCoordinate, Is.EqualTo(capturedPawn.YCoordinate));
         }
+
+        [Test]
+        public void Add_Sets_XCoordinate()
+        {
+            var piece = Substitute.For<IChessPiece>();
+
+            _chessBoard.AddPiece(piece, 6, 3);
+            Assert.That(piece.XCoordinate, Is.EqualTo(6));
+        }
+
+        [Test]
+        public void Add_Sets_YCoordinate()
+        {
+            var piece = Substitute.For<IChessPiece>();
+
+            _chessBoard.AddPiece(piece, 6, 3);
+            Assert.That(piece.YCoordinate, Is.EqualTo(3));
+        }
     }
 }
