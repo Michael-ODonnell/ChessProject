@@ -8,6 +8,8 @@ namespace Gfi.Hiring
     /// </summary>
     public class Pawn : ChessPiece, IPawn
     {
+        private static readonly int NotMoved = 0;
+
         /// <summary>
         /// Base Constuctor
         /// </summary>
@@ -30,7 +32,7 @@ namespace Gfi.Hiring
         /// <returns>True when the move was valid</returns>
         public override bool Move(int newXCoordinate, int newYCoordinate)
         {
-            if(FirstMovedOn == 0)
+            if(FirstMovedOn == NotMoved)
             {
                 FirstMovedOn = _chessBoard.CurrentTurn;
             }

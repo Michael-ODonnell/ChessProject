@@ -66,7 +66,7 @@
 
         private bool CheckEnPassant(IChessBoard board, Move move)
         {
-            // en passant can only apply on racks three from the enemies home
+            // en passant can only apply on ranks three from the enemies home
             if (move.Piece.Color == PieceColor.White && move.EndingY != board.Height - 3)
             {
                 return false;
