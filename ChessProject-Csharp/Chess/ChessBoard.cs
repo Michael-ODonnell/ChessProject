@@ -8,21 +8,26 @@ namespace Gfi.Hiring
     /// </summary>
     public class ChessBoard : IChessBoard
     {
-        public static readonly int MaxBoardWidth = 8;
-        public static readonly int MaxBoardHeight = 8;
+        public static readonly int BoardWidth = 8;
+        public static readonly int BoardHeight = 8;
+
+        private static readonly int MaxBoardXPosition = BoardWidth-1;
+        private static readonly int MaxBoardYPosition = BoardHeight-1;
+        private static readonly int MinBoardXPosition = 0;
+        private static readonly int MinBoardYPosition = 0;
 
         /// <summary>
         /// Coordinates used to indicate when a piece is not on the board.
         /// </summary>
-        public const int OffBoardCoordinate = -1;
+        public static readonly int OffBoardCoordinate = -1;
 
         /// <summary>
         /// Array of game squares.  Empty squares should contain null
         /// </summary>
         private IChessPiece[,] pieces;
 
-        public int Width {  get { return MaxBoardWidth; } }
-        public int Height { get { return MaxBoardHeight; } }
+        public int Width {  get { return BoardWidth; } }
+        public int Height { get { return BoardHeight; } }
 
         /// <summary>
         /// Number of turns since game start.
@@ -33,12 +38,12 @@ namespace Gfi.Hiring
         
         public ChessBoard ()
         {
-            pieces = new IChessPiece[MaxBoardWidth, MaxBoardHeight];
+            pieces = new IChessPiece[BoardWidth, BoardHeight];
 
-            piecesOnBoard = new List<IChessPiece>[6, 2];
-            for (int type = 0; type < 6; ++type)
+            piecesOnBoard = new List<IChessPiece>[(int)PieceType.Count, (int)PieceColor.Count];
+            for (int type = 0; type < (int)PieceType.Count; ++type)
             {
-                for (int color = 0; color < 2; ++color)
+                for (int color = 0; color < (int)PieceColor.Count; ++color)
                 {
                     piecesOnBoard[type, color] = new List<IChessPiece>();
                 }
@@ -90,8 +95,8 @@ namespace Gfi.Hiring
         /// <returns></returns>
         public bool IsLegalBoardPosition(int xCoordinate, int yCoordinate)
         {
-            return (-1 < xCoordinate && xCoordinate < Width &&
-                -1 < yCoordinate && yCoordinate < Height);
+            return !(xCoordinate < MinBoardXPosition || xCoordinate > MaxBoardXPosition ||
+                yCoordinate < MinBoardYPosition || yCoordinate > MaxBoardYPosition);
         }
 
         private void RemoveFromBoard(IChessPiece piece)
@@ -145,19 +150,19 @@ namespace Gfi.Hiring
 
             if (xStart == xEnd)
             {
-                return CheckVertical(minY, maxY, xStart);
+                return CheckVertical(minY+1, maxY-1, xStart);
             }
             if (yStart == yEnd)
             {
-                return CheckHorizontal(minX, maxX, yStart);
+                return CheckHorizontal(minX+1, maxX-1, yStart);
             }
             if (xStart - xEnd == yStart - yEnd)
             {
-                return CheckXEqualsY(minX, minY, maxX, maxY);
+                return CheckXEqualsY(minX+1, minY+1, maxX-1, maxY-1);
             }
             if (xStart - xEnd == yEnd - yStart)
             {
-                return CheckXEqualsMinusY(minX, maxY, maxX, minY);
+                return CheckXEqualsMinusY(minX+1, maxY-1, maxX-1, minY+1);
             }
 
             return false;
@@ -166,7 +171,7 @@ namespace Gfi.Hiring
         #region Check Clear paths on straight lines
         private bool CheckHorizontal(int left, int right, int y)
         {
-            for(int x = left + 1; x < right - 1; ++x)
+            for(int x = left; x < right; ++x)
             {
                 if(pieces[x, y] != null)
                 {
@@ -178,7 +183,7 @@ namespace Gfi.Hiring
         }
         private bool CheckVertical(int bottom, int top, int x)
         {
-            for (int y = bottom + 1; y < top - 1 - 1; ++y)
+            for (int y = bottom; y < top - 1; ++y)
             {
                 if (pieces[x, y] != null)
                 {
@@ -190,9 +195,9 @@ namespace Gfi.Hiring
         }
         private bool CheckXEqualsY(int left, int bottom, int right, int top)
         {
-            for (int x = left + 1; x < right - 1 - 1; ++x)
+            for (int x = left; x < right - 1; ++x)
             {
-                for (int y = bottom + 1; y < top - 1 - 1; ++y)
+                for (int y = bottom; y < top - 1; ++y)
                 {
                     if (pieces[x, y] != null)
                     {
@@ -205,9 +210,9 @@ namespace Gfi.Hiring
         }
         private bool CheckXEqualsMinusY(int left, int top, int right, int bottom)
         {
-            for (int x = left + 1; x < right - 1 - 1; ++x)
+            for (int x = left; x < right - 1; ++x)
             {
-                for (int y = top - 1; y > bottom + 1; --y)
+                for (int y = top; y > bottom; --y)
                 {
                     if (pieces[x, y] != null)
                     {

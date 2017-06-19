@@ -16,15 +16,15 @@ namespace Gfi.Hiring
 		}
 
 		[Test]
-		public void Has_MaxBoardWidth_of_8()
+		public void Has_Width_of_8()
 		{
-			Assert.That(ChessBoard.MaxBoardWidth, Is.EqualTo(8));
+			Assert.That(ChessBoard.BoardWidth, Is.EqualTo(8));
 		}
 
 		[Test]
-		public void Has_MaxBoardHeight_of_8()
+		public void Has_Height_of_8()
 		{
-			Assert.That(ChessBoard.MaxBoardHeight, Is.EqualTo(8));
+			Assert.That(ChessBoard.BoardHeight, Is.EqualTo(8));
 		}
 
 		[Test]
@@ -60,6 +60,6 @@ namespace Gfi.Hiring
 		{
 			var isValidPosition = _chessBoard.IsLegalBoardPosition(11, 0);
 			Assert.That(isValidPosition, Is.False);
-        }
-    }
+		}
+	}
 }

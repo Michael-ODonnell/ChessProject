@@ -7,6 +7,7 @@
         Knight = 2,
         Bishop = 3,
         Queen = 4,
-        King = 5
+        King = 5,
+        Count = 6
     }
 }
