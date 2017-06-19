@@ -8,44 +8,60 @@ namespace Gfi.Hiring
     /// </summary>
     public class ChessBoard : IChessBoard
     {
-        public static readonly int BoardWidth = 8;
-        public static readonly int BoardHeight = 8;
-
-        private static readonly int MaxBoardXPosition = BoardWidth-1;
-        private static readonly int MaxBoardYPosition = BoardHeight-1;
-        private static readonly int MinBoardXPosition = 0;
-        private static readonly int MinBoardYPosition = 0;
+        private readonly int _maxBoardXPosition;     
+        private readonly int _maxBoardYPosition;
+        private readonly int _minBoardXPosition;
+        private readonly int _minBoardYPosition;
 
         /// <summary>
         /// Coordinates used to indicate when a piece is not on the board.
         /// </summary>
         public static readonly int OffBoardCoordinate = -1;
 
+
+        /// <summary>
+        /// Game configuration
+        /// </summary>
+        private GameSettings _settings;
+
         /// <summary>
         /// Array of game squares.  Empty squares should contain null
         /// </summary>
-        private IChessPiece[,] pieces;
+        private IChessPiece[,] _pieces;
 
-        public int Width {  get { return BoardWidth; } }
-        public int Height { get { return BoardHeight; } }
+        public int Width {  get { return _settings.BoardWidth; } }
+        public int Height { get { return _settings.BoardHeight; } }
 
         /// <summary>
         /// Number of turns since game start.
         /// </summary>
         public int CurrentTurn { get; private set; }
 
-        private List<IChessPiece>[,] piecesOnBoard; //int[type, color]
+        private List<IChessPiece>[,] _piecesOnBoard; //int[type, color]
         
         public ChessBoard ()
         {
-            pieces = new IChessPiece[BoardWidth, BoardHeight];
+            InitBoard();
 
-            piecesOnBoard = new List<IChessPiece>[(int)PieceType.Count, (int)PieceColor.Count];
+            _maxBoardXPosition = _settings.BoardWidth - 1;
+            _maxBoardYPosition = _settings.BoardWidth - 1;
+            _minBoardXPosition = 0;
+            _minBoardYPosition = 0;
+        }
+
+        private void InitBoard()
+        {
+            // default settings for now
+            _settings = new GameSettings();
+
+            _pieces = new IChessPiece[_settings.BoardWidth, _settings.BoardHeight];
+
+            _piecesOnBoard = new List<IChessPiece>[(int)PieceType.Count, (int)PieceColor.Count];
             for (int type = 0; type < (int)PieceType.Count; ++type)
             {
                 for (int color = 0; color < (int)PieceColor.Count; ++color)
                 {
-                    piecesOnBoard[type, color] = new List<IChessPiece>();
+                    _piecesOnBoard[type, color] = new List<IChessPiece>();
                 }
             }
 
@@ -66,18 +82,18 @@ namespace Gfi.Hiring
                 RemoveFromBoard(piece);
                 return false;
             }
-            if (piecesOnBoard[(int)PieceType.Pawn, (int)piece.Color].Count == Pawn.Max)
+            if (_piecesOnBoard[(int)PieceType.Pawn, (int)piece.Color].Count == _settings.MaxPawnsPerSide)
             {
                 RemoveFromBoard(piece);
                 return false;
             }
 
-            if(pieces[xCoordinate, yCoordinate] == null)
+            if(_pieces[xCoordinate, yCoordinate] == null)
             {
-                pieces[xCoordinate, yCoordinate] = piece;
+                _pieces[xCoordinate, yCoordinate] = piece;
                 piece.XCoordinate = xCoordinate;
                 piece.YCoordinate = yCoordinate;
-                piecesOnBoard[(int)PieceType.Pawn, (int)piece.Color].Add(piece);
+                _piecesOnBoard[(int)PieceType.Pawn, (int)piece.Color].Add(piece);
                 return true;
             }
             else
@@ -95,8 +111,8 @@ namespace Gfi.Hiring
         /// <returns></returns>
         public bool IsLegalBoardPosition(int xCoordinate, int yCoordinate)
         {
-            return !(xCoordinate < MinBoardXPosition || xCoordinate > MaxBoardXPosition ||
-                yCoordinate < MinBoardYPosition || yCoordinate > MaxBoardYPosition);
+            return !(xCoordinate < _minBoardXPosition || xCoordinate > _maxBoardXPosition ||
+                yCoordinate < _minBoardYPosition || yCoordinate > _maxBoardYPosition);
         }
 
         private void RemoveFromBoard(IChessPiece piece)
@@ -119,7 +135,7 @@ namespace Gfi.Hiring
                 piece = null;
                 return false;
             }
-            piece = pieces[x, y];
+            piece = _pieces[x, y];
             return (piece != null);
         }
 
@@ -173,7 +189,7 @@ namespace Gfi.Hiring
         {
             for(int x = left; x < right; ++x)
             {
-                if(pieces[x, y] != null)
+                if(_pieces[x, y] != null)
                 {
                     return false;
                 }
@@ -185,7 +201,7 @@ namespace Gfi.Hiring
         {
             for (int y = bottom; y < top - 1; ++y)
             {
-                if (pieces[x, y] != null)
+                if (_pieces[x, y] != null)
                 {
                     return false;
                 }
@@ -199,7 +215,7 @@ namespace Gfi.Hiring
             {
                 for (int y = bottom; y < top - 1; ++y)
                 {
-                    if (pieces[x, y] != null)
+                    if (_pieces[x, y] != null)
                     {
                         return false;
                     }
@@ -214,7 +230,7 @@ namespace Gfi.Hiring
             {
                 for (int y = top; y > bottom; --y)
                 {
-                    if (pieces[x, y] != null)
+                    if (_pieces[x, y] != null)
                     {
                         return false;
                     }
@@ -247,9 +263,9 @@ namespace Gfi.Hiring
                 return;
             }
 
-            pieces[move.StartingX, move.StartingY] = null;
-            IChessPiece captured = pieces[move.EndingX, move.EndingY];
-            pieces[move.EndingX, move.EndingY] = move.Piece;
+            _pieces[move.StartingX, move.StartingY] = null;
+            IChessPiece captured = _pieces[move.EndingX, move.EndingY];
+            _pieces[move.EndingX, move.EndingY] = move.Piece;
 
             if(captured != null)
             {

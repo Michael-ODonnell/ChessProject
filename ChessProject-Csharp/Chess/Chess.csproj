@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameSettings.cs" />
     <Compile Include="Interfaces\IChessBoard.cs" />
     <Compile Include="Interfaces\IPawn.cs" />
     <Compile Include="Interfaces\IChessPiece.cs" />

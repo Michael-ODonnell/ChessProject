@@ -9,7 +9,7 @@ namespace Gfi.Hiring {
         /// <summary>
         /// Rules governing behaviour of the piece
         /// </summary>
-        private List<IRule> m_Rules;
+        private List<IRule> _rules;
 
         protected IChessBoard _chessBoard;
         
@@ -70,7 +70,7 @@ namespace Gfi.Hiring {
             Color = color;
             XCoordinate = ChessBoard.OffBoardCoordinate;
             YCoordinate = ChessBoard.OffBoardCoordinate;
-            m_Rules = new List<IRule>(rules);
+            _rules = new List<IRule>(rules);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Gfi.Hiring {
         {
             Move move = new Move(this, XCoordinate, YCoordinate, newXCoordinate, newYCoordinate);
 
-            foreach (IRule rule in m_Rules)
+            foreach (IRule rule in _rules)
             {
                 if (!rule.IsMoveValid(_chessBoard, move))
                 {
@@ -106,7 +106,7 @@ namespace Gfi.Hiring {
         /// <param name="rule"></param>
         internal void AddRule(IRule rule)
         {
-            m_Rules.Add(rule);
+            _rules.Add(rule);
         }
     }
 }

@@ -20,9 +20,9 @@ namespace Gfi.Hiring
 			if(rules == null)
 			{
 				rules = new IRule[1];
-                rules[0] = new MoveEndpointOnBoardRule();
+				rules[0] = new MoveEndpointOnBoardRule();
 
-            }
+			}
 			return new ChessPiece(_chessBoard, type, color);
 		}
 
@@ -81,7 +81,7 @@ namespace Gfi.Hiring
 		public void ChessPiece_Move_Sets_X_Coordinate_For_Valid_Move()
 		{
 			IChessPiece piece = CreatePiece(PieceType.Pawn, PieceColor.Black);
-            _chessBoard.AddPiece(piece, 3, 6);
+			_chessBoard.AddPiece(piece, 3, 6);
 			piece.Move(MovementType.Move, 3, 4);
 			Assert.That(piece.XCoordinate, Is.EqualTo(3));
 		}
@@ -90,48 +90,48 @@ namespace Gfi.Hiring
 		public void ChessPiece_Move_Sets_Y_Coordinate_For_Valid_Move()
 		{
 			IChessPiece piece = CreatePiece(PieceType.Pawn, PieceColor.Black);
-            _chessBoard.AddPiece(piece, 3, 6);
-            piece.Move(MovementType.Move, 3, 4);
-            Assert.That(piece.YCoordinate, Is.EqualTo(4));
-        }
+			_chessBoard.AddPiece(piece, 3, 6);
+			piece.Move(MovementType.Move, 3, 4);
+			Assert.That(piece.YCoordinate, Is.EqualTo(4));
+		}
 
-        [Test]
-        public void ChessPiece_Move_Returns_False_On_Rule_Violation()
-        {
-            var failRule = Substitute.For<IRule>();
-            var board = Substitute.For<IChessBoard>();
-            IChessPiece piece = new ChessPiece(board, PieceType.Pawn, PieceColor.Black, new IRule[1] { failRule });
+		[Test]
+		public void ChessPiece_Move_Returns_False_On_Rule_Violation()
+		{
+			var failRule = Substitute.For<IRule>();
+			var board = Substitute.For<IChessBoard>();
+			IChessPiece piece = new ChessPiece(board, PieceType.Pawn, PieceColor.Black, new IRule[1] { failRule });
 
-            failRule.IsMoveValid(board, null).ReturnsForAnyArgs(false);
-            board.AddPiece(Arg.Any<IChessPiece>(), 
-                Arg.Do<int>(x => piece.XCoordinate = x), 
-                Arg.Do<int>(y => piece.YCoordinate = y));
+			failRule.IsMoveValid(board, null).ReturnsForAnyArgs(false);
+			board.AddPiece(Arg.Any<IChessPiece>(), 
+				Arg.Do<int>(x => piece.XCoordinate = x), 
+				Arg.Do<int>(y => piece.YCoordinate = y));
 
-            board.IsLegalBoardPosition(Arg.Any<int>(), Arg.Any<int>()).Returns(true);
+			board.IsLegalBoardPosition(Arg.Any<int>(), Arg.Any<int>()).Returns(true);
 
-            board.AddPiece(piece, 0, 0);            
-            Assert.IsFalse(piece.Move(MovementType.Move, 1, 1));
-        }
+			board.AddPiece(piece, 0, 0);            
+			Assert.That(piece.Move(MovementType.Move, 1, 1), Is.False);
+		}
 
-        [Test]
-        public void ChessPiece_Does_Not_Move_On_Rule_Violation()
-        {
-            var failRule = Substitute.For<IRule>();
-            var board = Substitute.For<IChessBoard>();
-            IChessPiece piece = new ChessPiece(board, PieceType.Pawn, PieceColor.Black, new IRule[1] { failRule });
+		[Test]
+		public void ChessPiece_Does_Not_Move_On_Rule_Violation()
+		{
+			var failRule = Substitute.For<IRule>();
+			var board = Substitute.For<IChessBoard>();
+			IChessPiece piece = new ChessPiece(board, PieceType.Pawn, PieceColor.Black, new IRule[1] { failRule });
 
-            failRule.IsMoveValid(board, null).ReturnsForAnyArgs(false);
-            board.AddPiece(Arg.Any<IChessPiece>(),
-                Arg.Do<int>(x => piece.XCoordinate = x),
-                Arg.Do<int>(y => piece.YCoordinate = y));
+			failRule.IsMoveValid(board, null).ReturnsForAnyArgs(false);
+			board.AddPiece(Arg.Any<IChessPiece>(),
+				Arg.Do<int>(x => piece.XCoordinate = x),
+				Arg.Do<int>(y => piece.YCoordinate = y));
 
-            board.IsLegalBoardPosition(Arg.Any<int>(), Arg.Any<int>()).Returns(true);
+			board.IsLegalBoardPosition(Arg.Any<int>(), Arg.Any<int>()).Returns(true);
 
-            board.AddPiece(piece, 0, 0);
-            piece.Move(MovementType.Move, 1, 1);
+			board.AddPiece(piece, 0, 0);
+			piece.Move(MovementType.Move, 1, 1);
 
-            Assert.That(piece.XCoordinate, Is.EqualTo(0));
-            Assert.That(piece.YCoordinate, Is.EqualTo(0));
-        }
-    }
+			Assert.That(piece.XCoordinate, Is.EqualTo(0));
+			Assert.That(piece.YCoordinate, Is.EqualTo(0));
+		}
+	}
 }

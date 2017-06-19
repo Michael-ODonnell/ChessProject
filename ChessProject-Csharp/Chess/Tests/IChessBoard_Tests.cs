@@ -46,6 +46,34 @@ namespace Gfi.Hiring {
         }
 
         [Test]
+        public void IsLegalBoardPosition_True_For_Valid_Max_X_Values()
+        {
+            var isValidPosition = _chessBoard.IsLegalBoardPosition(0, 0);
+            Assert.That(isValidPosition, Is.True);
+        }
+
+        [Test]
+        public void IsLegalBoardPosition_True_For_Valid_Min_X_Values()
+        {
+            var isValidPosition = _chessBoard.IsLegalBoardPosition(_chessBoard.Width - 1, 0);
+            Assert.That(isValidPosition, Is.True);
+        }
+
+        [Test]
+        public void IsLegalBoardPosition_True_For_Valid_Max_Y_Values()
+        {
+            var isValidPosition = _chessBoard.IsLegalBoardPosition(0, _chessBoard.Height - 1);
+            Assert.That(isValidPosition, Is.True);
+        }
+
+        [Test]
+        public void IsLegalBoardPosition_True_For_Valid_Min_Y_Values()
+        {
+            var isValidPosition = _chessBoard.IsLegalBoardPosition(0, 0);
+            Assert.That(isValidPosition, Is.True);
+        }
+
+        [Test]
         public void Avoids_Duplicate_Positioning()
         {
             IChessPiece firstPawn = Substitute.For<IChessPiece>();
@@ -85,7 +113,7 @@ namespace Gfi.Hiring {
             var pawn = Substitute.For<IChessPiece>();
             _chessBoard.AddPiece(pawn, 0, 0);
             IChessPiece piece;
-            Assert.IsTrue(_chessBoard.TryGetPieceOn(0, 0, out piece));
+            Assert.That(_chessBoard.TryGetPieceOn(0, 0, out piece), Is.True);
             Assert.That(piece, Is.SameAs(pawn));
         }
 
@@ -95,7 +123,7 @@ namespace Gfi.Hiring {
             var pawn = Substitute.For<IChessPiece>();
             _chessBoard.AddPiece(pawn, 0, 0);
             IChessPiece piece;
-            Assert.IsFalse(_chessBoard.TryGetPieceOn(1, 0, out piece));
+            Assert.That(_chessBoard.TryGetPieceOn(1, 0, out piece), Is.False);
         }
 
         [Test]
@@ -105,7 +133,7 @@ namespace Gfi.Hiring {
             _chessBoard.AddPiece(pawn, 0, 0);
             IChessPiece piece;
             _chessBoard.TryGetPieceOn(1, 0, out piece);
-            Assert.IsNull(piece);
+            Assert.That(piece, Is.Null);
         }
 
         #region Path Tests
@@ -115,7 +143,7 @@ namespace Gfi.Hiring {
         {
             var pawn = Substitute.For<IChessPiece>();
             _chessBoard.AddPiece(pawn, 0, 0);
-            Assert.IsTrue(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, pawn.XCoordinate, _chessBoard.Height - 1));
+            Assert.That(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, pawn.XCoordinate, _chessBoard.Height - 1), Is.True);
 
         }
         [Test]
@@ -123,7 +151,7 @@ namespace Gfi.Hiring {
         {
             var pawn = Substitute.For<IChessPiece>();
             _chessBoard.AddPiece(pawn, 1, _chessBoard.Height - 1);
-            Assert.IsTrue(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, pawn.XCoordinate, 0));
+            Assert.That(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, pawn.XCoordinate, 0), Is.True);
         }
 
         [Test]
@@ -135,7 +163,7 @@ namespace Gfi.Hiring {
             _chessBoard.AddPiece(pawn, 0, 0);
             _chessBoard.AddPiece(blocker, 0, 1);
 
-            Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, pawn.XCoordinate, _chessBoard.Height - 1));
+            Assert.That(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, pawn.XCoordinate, _chessBoard.Height - 1), Is.False);
         }
 
         [Test]
@@ -145,7 +173,7 @@ namespace Gfi.Hiring {
             var blocker = Substitute.For<IChessPiece>();
             _chessBoard.AddPiece(pawn, 1, _chessBoard.Height - 1);
             _chessBoard.AddPiece(blocker, 1, 1);
-            Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, pawn.XCoordinate, 0));
+            Assert.That(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, pawn.XCoordinate, 0), Is.False);
         }
 
         [Test]
@@ -153,7 +181,7 @@ namespace Gfi.Hiring {
         {
             var pawn = Substitute.For<IChessPiece>();
             _chessBoard.AddPiece(pawn, 0, 0);
-            Assert.IsTrue(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, _chessBoard.Width - 1, pawn.YCoordinate));
+            Assert.That(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, _chessBoard.Width - 1, pawn.YCoordinate), Is.True);
 
         }
         [Test]
@@ -161,7 +189,7 @@ namespace Gfi.Hiring {
         {
             var pawn = Substitute.For<IChessPiece>();
             _chessBoard.AddPiece(pawn, _chessBoard.Width - 1, 1);
-            Assert.IsTrue(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, 0, pawn.YCoordinate));
+            Assert.That(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, 0, pawn.YCoordinate), Is.True);
         }
 
         [Test]
@@ -173,7 +201,7 @@ namespace Gfi.Hiring {
             _chessBoard.AddPiece(pawn, 0, 0);
             _chessBoard.AddPiece(blocker, 1, 0);
 
-            Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, _chessBoard.Width - 1, pawn.YCoordinate));
+            Assert.That(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, _chessBoard.Width - 1, pawn.YCoordinate), Is.False);
         }
 
         [Test]
@@ -183,7 +211,7 @@ namespace Gfi.Hiring {
             var blocker = Substitute.For<IChessPiece>();
             _chessBoard.AddPiece(pawn, _chessBoard.Width - 1, 1);
             _chessBoard.AddPiece(blocker, 1, 1);
-            Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, 0, pawn.YCoordinate));
+            Assert.That(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, 0, pawn.YCoordinate), Is.False);
         }
 
         [Test]
@@ -191,7 +219,7 @@ namespace Gfi.Hiring {
         {
             var pawn = Substitute.For<IChessPiece>();
             _chessBoard.AddPiece(pawn, 0, 0);
-            Assert.IsTrue(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, _chessBoard.Width - 1, _chessBoard.Width - 1));
+            Assert.That(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, _chessBoard.Width - 1, _chessBoard.Width - 1), Is.True);
         }
 
         [Test]
@@ -203,7 +231,7 @@ namespace Gfi.Hiring {
             _chessBoard.AddPiece(pawn, 0, 0);
             _chessBoard.AddPiece(blocker, 1, 1);
 
-            Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, _chessBoard.Width - 1, _chessBoard.Width - 1));
+            Assert.That(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, _chessBoard.Width - 1, _chessBoard.Width - 1), Is.False);
         }
 
         [Test]
@@ -213,7 +241,7 @@ namespace Gfi.Hiring {
             var blocker = Substitute.For<IChessPiece>();
             _chessBoard.AddPiece(pawn, _chessBoard.Width - 1, _chessBoard.Width - 1);
             _chessBoard.AddPiece(blocker, 1, 1);
-            Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, 0, 0));
+            Assert.That(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, 0, 0), Is.False);
         }
 
         [Test]
@@ -225,7 +253,7 @@ namespace Gfi.Hiring {
             _chessBoard.AddPiece(pawn, 0, _chessBoard.Width - 1);
             _chessBoard.AddPiece(blocker, 1, _chessBoard.Width - 2);
 
-            Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, _chessBoard.Width - 1, 0));
+            Assert.That(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, _chessBoard.Width - 1, 0), Is.False);
         }
 
         [Test]
@@ -235,7 +263,7 @@ namespace Gfi.Hiring {
             var blocker = Substitute.For<IChessPiece>();
             _chessBoard.AddPiece(pawn, _chessBoard.Width - 1, 0);
             _chessBoard.AddPiece(blocker, 1, _chessBoard.Width - 2);
-            Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, 0, _chessBoard.Width));
+            Assert.That(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, 0, _chessBoard.Width), Is.False);
         }
 
         [Test]
@@ -244,8 +272,8 @@ namespace Gfi.Hiring {
             var pawn = Substitute.For<IChessPiece>();
             var blocker = Substitute.For<IChessPiece>();
             _chessBoard.AddPiece(pawn, 0, 0);
-            Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, pawn.XCoordinate + 1, pawn.YCoordinate + 2));
-            Assert.IsFalse(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, pawn.XCoordinate + 2, pawn.YCoordinate + 1));
+            Assert.That(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, pawn.XCoordinate + 1, pawn.YCoordinate + 2), Is.False);
+            Assert.That(_chessBoard.IsStraightClearPathBetween(pawn.XCoordinate, pawn.YCoordinate, pawn.XCoordinate + 2, pawn.YCoordinate + 1), Is.False);
         }
         #endregion
 
@@ -257,8 +285,8 @@ namespace Gfi.Hiring {
             _chessBoard.UpdateBoard(new Move(pawn, 0, 1, 0, 3));
 
             IChessPiece foundPiece;
-            Assert.IsFalse(_chessBoard.TryGetPieceOn(0, 1, out foundPiece));
-            Assert.IsNull(foundPiece);
+            Assert.That(_chessBoard.TryGetPieceOn(0, 1, out foundPiece), Is.False);
+            Assert.That(foundPiece, Is.Null);
         }
 
         [Test]
@@ -269,8 +297,8 @@ namespace Gfi.Hiring {
             _chessBoard.UpdateBoard(new Move(pawn, 0, 1, 0, 3));
 
             IChessPiece foundPiece;
-            Assert.IsTrue(_chessBoard.TryGetPieceOn(0, 3, out foundPiece));
-            Assert.AreSame(pawn, foundPiece);
+            Assert.That(_chessBoard.TryGetPieceOn(0, 3, out foundPiece), Is.True);
+            Assert.That(pawn, Is.SameAs(foundPiece));
         }
 
         [Test]
@@ -282,8 +310,8 @@ namespace Gfi.Hiring {
             _chessBoard.AddPiece(capturedPawn, 1, 2);
             _chessBoard.UpdateBoard(new Move(pawn, 0, 1, 1, 2));
 
-            Assert.AreEqual(ChessBoard.OffBoardCoordinate, capturedPawn.XCoordinate);
-            Assert.AreEqual(ChessBoard.OffBoardCoordinate, capturedPawn.YCoordinate);
+            Assert.That(ChessBoard.OffBoardCoordinate, Is.EqualTo(capturedPawn.XCoordinate));
+            Assert.That(ChessBoard.OffBoardCoordinate, Is.EqualTo(capturedPawn.YCoordinate));
         }
     }
 }

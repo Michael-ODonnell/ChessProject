@@ -15,31 +15,31 @@ namespace Gfi.Hiring {
         public void TestPawnCreationIsNotNull()
         {
             IChessPiece piece = _pieceFactory.Build(PieceType.Pawn, PieceColor.Black);
-            Assert.IsNotNull(piece);
+            Assert.That(piece, Is.Not.Null);
         }
         [Test]
         public void TestPawnImplementsIPawn()
         {
             IChessPiece piece = _pieceFactory.Build(PieceType.Pawn, PieceColor.Black);
-            Assert.IsNotNull(piece as IPawn);
+            Assert.That(piece as IPawn, Is.Not.Null);
         }
         [Test]
         public void TestPawnTypeCorrectlyAssigned()
         {
             IChessPiece piece = _pieceFactory.Build(PieceType.Pawn, PieceColor.Black);
-            Assert.AreEqual(PieceType.Pawn, piece.Type);
+            Assert.That(PieceType.Pawn, Is.EqualTo(piece.Type));
         }
         [Test]
         public void TestBlackPawnColorCorrectlyAssigned()
         {
             IChessPiece piece = _pieceFactory.Build(PieceType.Pawn, PieceColor.Black);
-            Assert.AreEqual(PieceColor.Black, piece.Color);
+            Assert.That(PieceColor.Black, Is.EqualTo(piece.Color));
         }
         [Test]
         public void TestWhitePawnColorCorrectlyAssigned()
         {
             IChessPiece piece = _pieceFactory.Build(PieceType.Pawn, PieceColor.White);
-            Assert.AreEqual(PieceColor.White, piece.Color);
+            Assert.That(PieceColor.White, Is.EqualTo(piece.Color));
         }
     }
 }

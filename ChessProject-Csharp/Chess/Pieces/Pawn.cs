@@ -9,11 +9,6 @@ namespace Gfi.Hiring
     public class Pawn : ChessPiece, IPawn
     {
         /// <summary>
-        /// Maximum number of pawns per side.  Might need moved out into a game settings class.
-        /// </summary>
-        public const int Max = 8;
-
-        /// <summary>
         /// Base Constuctor
         /// </summary>
         /// <param name="board">Board related to the game.</param>
