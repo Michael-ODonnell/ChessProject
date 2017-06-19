@@ -1,14 +1,9 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Gfi.Hiring
-{
+namespace Gfi.Hiring {
 
-	[TestFixture]
+    [TestFixture]
 	public class CannotMoveHorizontallyRule_Tests {
 
 		[Test]

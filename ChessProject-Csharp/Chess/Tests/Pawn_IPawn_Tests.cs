@@ -1,13 +1,8 @@
 ﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Gfi.Hiring
-{
+namespace Gfi.Hiring {
 
-	[TestFixture]
+    [TestFixture]
 	public class Pawn_IPawn_Tests : IPawn_Tests {
 		
 		protected override IPawn GetPawn(PieceColor color)

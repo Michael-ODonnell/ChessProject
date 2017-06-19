@@ -1,13 +1,7 @@
-﻿using NSubstitute;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using NUnit.Framework;
 
-namespace Gfi.Hiring
-{
-	[TestFixture]
+namespace Gfi.Hiring {
+    [TestFixture]
 	public class ChessBoard_Tests : IChessBoard_Tests   
 	{
 		protected override IChessBoard GetBoard()

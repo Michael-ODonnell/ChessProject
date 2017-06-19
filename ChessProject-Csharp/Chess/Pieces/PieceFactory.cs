@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Gfi.Hiring {
 
@@ -24,9 +21,9 @@ namespace Gfi.Hiring {
         /// <summary>
         /// Create an instance of a type of piece with the associated default ruleset
         /// </summary>
-        /// <param name="type"></param>
-        /// <param name="color"></param>
-        /// <returns></returns>
+        /// <param name="type">The type of piece to be created</param>
+        /// <param name="color">The side the piece will be on</param>
+        /// <returns>The created peice</returns>
         public IChessPiece Build(PieceType type, PieceColor color)
         {
             switch (type)
@@ -41,8 +38,8 @@ namespace Gfi.Hiring {
         /// <summary>
         /// Creates a default pawn
         /// </summary>
-        /// <param name="color"></param>
-        /// <returns></returns>
+        /// <param name="color">The side the piece will be on</param>
+        /// <returns>A new pawn with all the required rules</returns>
         private IChessPiece CreatePawn(PieceColor color)
         {
             IRule[] pawnRules = new IRule[] {

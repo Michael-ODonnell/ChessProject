@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Gfi.Hiring {
     public class ChessPiece : IChessPiece {
@@ -63,11 +60,11 @@ namespace Gfi.Hiring {
         }
 
         /// <summary>
-        /// Moves a piece iff the move meets all the required rules for the piece.  Returns whehter the move happened
+        /// Moves the piece.  Coordinates are only updated if the move is valid
         /// </summary>
-        /// <param name="newXCoordinate"></param>
-        /// <param name="newYCoordinate"></param>
-        /// <returns></returns>
+        /// <param name="newXCoordinate">The x coordinate of the square being moved to</param>
+        /// <param name="newYCoordinate">The y coordinate of the square being moved to</param>
+        /// <returns>True when the move was valid</returns>
         public virtual bool Move(int newXCoordinate, int newYCoordinate)
         {
             Move move = new Move(this, XCoordinate, YCoordinate, newXCoordinate, newYCoordinate);

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Gfi.Hiring {
+﻿namespace Gfi.Hiring {
 
     /// <summary>
     /// A rule is something that governs behaviour of a piece
@@ -12,9 +7,8 @@ namespace Gfi.Hiring {
         /// <summary>
         /// Check whether the rules on a piece allow a move
         /// </summary>
-        /// <param name=""></param>
-        /// <param name=""></param>
-        /// <param name=""></param>
+        /// <param name="board">The current boardstate before the move</param>
+        /// <param name="move">The move to be performed</param>
         /// <returns> returns false if a move is not permitted</returns>
         bool IsMoveValid(IChessBoard board, Move move); 
     }

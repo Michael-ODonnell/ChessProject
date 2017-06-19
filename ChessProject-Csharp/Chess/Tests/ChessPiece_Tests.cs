@@ -1,13 +1,8 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Gfi.Hiring
-{
-	[TestFixture]
+namespace Gfi.Hiring {
+    [TestFixture]
 	public class ChessPiece_Tests : IChessPiece_Tests {
 		
 		protected override IChessPiece GetPiece(PieceColor color)

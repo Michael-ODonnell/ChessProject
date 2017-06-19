@@ -15,7 +15,6 @@ namespace Gfi.Hiring
         /// <param name="pieceColor">Which side the piece is on</param>
         public Pawn(IChessBoard board, PieceColor pieceColor, IRule[] rules) : base(board, PieceType.Pawn, pieceColor, rules)
         {
-
         }
 
         /// <summary>
@@ -26,8 +25,8 @@ namespace Gfi.Hiring
         /// <summary>
         /// Moves the piece.  Coordinates are only updated if the move is valid
         /// </summary>
-        /// <param name="newXCoordinate"></param>
-        /// <param name="newYCoordinate"></param>
+        /// <param name="newXCoordinate">XCoordinate of the square being moved to</param>
+        /// <param name="newYCoordinate">YCoordinate of the square being moved to</param>
         /// <returns>True when the move was valid</returns>
         public override bool Move(int newXCoordinate, int newYCoordinate)
         {

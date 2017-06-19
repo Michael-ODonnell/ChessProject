@@ -69,12 +69,12 @@ namespace Gfi.Hiring
         }
 
         /// <summary>
-        /// Places a piece on the board
+        /// Adds a piece to the board if the square isn't occupied
         /// </summary>
-        /// <param name="piece"></param>
-        /// <param name="xCoordinate"></param>
-        /// <param name="yCoordinate"></param>
-        /// <returns></returns>
+        /// <param name="piece">The piece to add to the board</param>
+        /// <param name="x">The x coordinate of the square to place the piece at</param>
+        /// <param name="y">The y coordinate of the square to place the piece at</param>
+        /// <returns>True if the piece was added</returns>
         public bool AddPiece(IChessPiece piece, int xCoordinate, int yCoordinate)
         {
             if (!IsLegalBoardPosition(xCoordinate, yCoordinate))
@@ -104,11 +104,11 @@ namespace Gfi.Hiring
         }
 
         /// <summary>
-        /// Checks whether a position lies in the board coordinate system.
+        /// Checks if the x, y coordinates are on the board
         /// </summary>
-        /// <param name="xCoordinate"></param>
-        /// <param name="yCoordinate"></param>
-        /// <returns></returns>
+        /// <param name="x">The x coordinate of the square to check for</param>
+        /// <param name="y">The y coordinate of the square to check for</param>
+        /// <returns>True if the coordinates are a valid square on the board</returns>
         public bool IsLegalBoardPosition(int xCoordinate, int yCoordinate)
         {
             return !(xCoordinate < _minBoardXPosition || xCoordinate > _maxBoardXPosition ||
@@ -120,14 +120,14 @@ namespace Gfi.Hiring
             piece.XCoordinate = OffBoardCoordinate;
             piece.YCoordinate = OffBoardCoordinate;
         }
-        
+
         /// <summary>
-        /// Tries to fetch the piece at the specified coordinates
+        /// Checks if there is a piece on x, y
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="piece"></param>
-        /// <returns></returns>
+        /// <param name="x">The x coordinate of the square to check</param>
+        /// <param name="y">The y coordinate of the square to check</param>
+        /// <param name="piece">The piece on the square.  If the square is empty this is set to null</param>
+        /// <returns>True if a piece was found on the targeted square</returns>
         public bool TryGetPieceOn(int x, int y, out IChessPiece piece)
         {
             if(!IsLegalBoardPosition(x, y))
@@ -140,13 +140,14 @@ namespace Gfi.Hiring
         }
 
         /// <summary>
-        /// 
+        /// checks if there are no pieces between two points.  The points can be occupied, but no square in a straight line between them can be.
+        /// If the line is not of the form x=c, y=c, x=y or x=-y returns false.
         /// </summary>
-        /// <param name="xStart"></param>
-        /// <param name="yStart"></param>
-        /// <param name="xEnd"></param>
-        /// <param name="yEnd"></param>
-        /// <returns></returns>
+        /// <param name="xStart">The x coordinate of the square being moved from</param>
+        /// <param name="yStart">The y coordinate of the square being moved from</param>
+        /// <param name="xEnd">The x coordinate of the square being moved to</param>
+        /// <param name="yEnd">The y coordinate of the square being moved to</param>
+        /// <returns>True if the path is a straight line with no pieces between the squares</returns>
         public bool IsStraightClearPathBetween(int xStart, int yStart, int xEnd, int yEnd)
         {
             if(!IsLegalBoardPosition(xStart, yStart))
@@ -166,26 +167,26 @@ namespace Gfi.Hiring
 
             if (xStart == xEnd)
             {
-                return CheckVertical(minY+1, maxY-1, xStart);
+                return CheckVerticalSquaresEmpty(minY+1, maxY-1, xStart);
             }
             if (yStart == yEnd)
             {
-                return CheckHorizontal(minX+1, maxX-1, yStart);
+                return CheckHorizontalSquaresEmpty(minX+1, maxX-1, yStart);
             }
             if (xStart - xEnd == yStart - yEnd)
             {
-                return CheckXEqualsY(minX+1, minY+1, maxX-1, maxY-1);
+                return CheckXEqualsYSquaresAreEmpty(minX+1, minY+1, maxX-1, maxY-1);
             }
             if (xStart - xEnd == yEnd - yStart)
             {
-                return CheckXEqualsMinusY(minX+1, maxY-1, maxX-1, minY+1);
+                return CheckXEqualsMinusYSquaresAreEmpty(minX+1, maxY-1, maxX-1, minY+1);
             }
 
             return false;
         }
 
         #region Check Clear paths on straight lines
-        private bool CheckHorizontal(int left, int right, int y)
+        private bool CheckHorizontalSquaresEmpty(int left, int right, int y)
         {
             for(int x = left; x < right; ++x)
             {
@@ -197,7 +198,8 @@ namespace Gfi.Hiring
 
             return true;
         }
-        private bool CheckVertical(int bottom, int top, int x)
+
+        private bool CheckVerticalSquaresEmpty(int bottom, int top, int x)
         {
             for (int y = bottom; y < top - 1; ++y)
             {
@@ -209,7 +211,8 @@ namespace Gfi.Hiring
 
             return true;
         }
-        private bool CheckXEqualsY(int left, int bottom, int right, int top)
+
+        private bool CheckXEqualsYSquaresAreEmpty(int left, int bottom, int right, int top)
         {
             for (int x = left; x < right - 1; ++x)
             {
@@ -224,7 +227,8 @@ namespace Gfi.Hiring
 
             return true;
         }
-        private bool CheckXEqualsMinusY(int left, int top, int right, int bottom)
+
+        private bool CheckXEqualsMinusYSquaresAreEmpty(int left, int top, int right, int bottom)
         {
             for (int x = left; x < right - 1; ++x)
             {
@@ -240,10 +244,12 @@ namespace Gfi.Hiring
             return true;
         }
 
+        #endregion
+
         /// <summary>
         /// Repositions a piece on the board.  Any pieces in the endpoint will be removed from the board
         /// </summary>
-        /// <param name="move"></param>
+        /// <param name="move">Description of the move</param>
         public void UpdateBoard(Move move)
         {
             if(move.Piece == null)
@@ -272,7 +278,5 @@ namespace Gfi.Hiring
                 RemoveFromBoard(captured);
             }
         }
-
-        #endregion
     }
 }

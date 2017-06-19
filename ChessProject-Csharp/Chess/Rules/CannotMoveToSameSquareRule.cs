@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Gfi.Hiring {
+﻿namespace Gfi.Hiring {
     /// <summary>
     /// Prevent a move being performed to the same square the piece is on
     /// </summary>

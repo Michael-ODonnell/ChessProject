@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Gfi.Hiring {
+﻿namespace Gfi.Hiring {
     /// <summary>
     /// Checks that the move endpoint is on the board
     /// </summary>
