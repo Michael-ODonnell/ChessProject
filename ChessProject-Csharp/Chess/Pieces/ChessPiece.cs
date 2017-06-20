@@ -2,12 +2,7 @@
 
 namespace Gfi.Hiring {
     public class ChessPiece : IChessPiece {
-
-        /// <summary>
-        /// Rules governing behaviour of the piece
-        /// </summary>
-        private List<IRule> _rules;
-
+        
         protected IChessBoard _chessBoard;
         
         /// <summary>
@@ -17,9 +12,9 @@ namespace Gfi.Hiring {
         /// <param name="type">The type of piece</param>
         /// <param name="color">Which side the piece is on</param>
         /// <param name="rules">Rules constraining piece behaviour and movement</param>
-        public ChessPiece(IChessBoard board, PieceType type, PieceColor color, IRule[] rules)
+        public ChessPiece(PieceType type, PieceColor color)
         {
-            Init(board, type, color, rules);
+            Init(type, color);
         }
 
         /// <summary>
@@ -45,18 +40,14 @@ namespace Gfi.Hiring {
         /// <summary>
         /// Initialises the board variables for the constructors
         /// </summary>
-        /// <param name="board">board the piece is to be placed on</param>
         /// <param name="type">The type of piece</param>
         /// <param name="color">Which side the piece is on</param>
-        /// <param name="rules">Rules constraining piece behaviour and movement</param>
-        private void Init(IChessBoard board, PieceType type, PieceColor color, IRule[] rules)
+        private void Init(PieceType type, PieceColor color)
         {
-            _chessBoard = board;
             Type = type;
             Color = color;
             XCoordinate = ChessBoard.OffBoardCoordinate;
             YCoordinate = ChessBoard.OffBoardCoordinate;
-            _rules = new List<IRule>(rules);
         }
 
         /// <summary>
@@ -65,24 +56,28 @@ namespace Gfi.Hiring {
         /// <param name="newXCoordinate">The x coordinate of the square being moved to</param>
         /// <param name="newYCoordinate">The y coordinate of the square being moved to</param>
         /// <returns>True when the move was valid</returns>
-        public virtual bool Move(int newXCoordinate, int newYCoordinate)
+        public virtual bool Move(MovementType moveType, int newXCoordinate, int newYCoordinate)
         {
             Move move = new Move(this, XCoordinate, YCoordinate, newXCoordinate, newYCoordinate);
 
-            foreach (IRule rule in _rules)
+            if (_chessBoard.IsMoveValid(move))
             {
-                if (!rule.IsMoveValid(_chessBoard, move))
-                {
-                    return false;
-                }
+                XCoordinate = newXCoordinate;
+                YCoordinate = newYCoordinate;
+                _chessBoard.UpdateBoard(move);
             }
 
-            XCoordinate = newXCoordinate;
-            YCoordinate = newYCoordinate;
-
-            _chessBoard.UpdateBoard(move);
-
             return true;
+        }
+
+        public void AddToBoard(IChessBoard board)
+        {
+            _chessBoard = board;
+        }
+
+        public void RemoveFromBoard()
+        {
+            _chessBoard = null;
         }
     }
 }

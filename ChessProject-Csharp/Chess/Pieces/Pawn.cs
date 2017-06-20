@@ -15,7 +15,7 @@ namespace Gfi.Hiring
         /// </summary>
         /// <param name="board">Board related to the game.</param>
         /// <param name="pieceColor">Which side the piece is on</param>
-        public Pawn(IChessBoard board, PieceColor pieceColor, IRule[] rules) : base(board, PieceType.Pawn, pieceColor, rules)
+        public Pawn(PieceColor pieceColor) : base(PieceType.Pawn, pieceColor)
         {
         }
 
@@ -30,13 +30,13 @@ namespace Gfi.Hiring
         /// <param name="newXCoordinate">XCoordinate of the square being moved to</param>
         /// <param name="newYCoordinate">YCoordinate of the square being moved to</param>
         /// <returns>True when the move was valid</returns>
-        public override bool Move(int newXCoordinate, int newYCoordinate)
+        public override bool Move(MovementType moveType, int newXCoordinate, int newYCoordinate)
         {
             if(FirstMovedOn == NotMoved)
             {
                 FirstMovedOn = _chessBoard.CurrentTurn;
             }
-            return base.Move(newXCoordinate, newYCoordinate);
+            return base.Move(moveType, newXCoordinate, newYCoordinate);
         }
 
         public override string ToString()

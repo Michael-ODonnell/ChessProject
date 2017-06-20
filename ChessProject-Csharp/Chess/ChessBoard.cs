@@ -8,17 +8,16 @@ namespace Gfi.Hiring
     /// </summary>
     public class ChessBoard : IChessBoard
     {
-        private readonly int _maxBoardXPosition;     
-        private readonly int _maxBoardYPosition;
-        private readonly int _minBoardXPosition;
-        private readonly int _minBoardYPosition;
+        public static readonly int MaxBoardWidth = 7;
+        public static readonly int MaxBoardHeight = 7;
+        private readonly int _minBoardXPosition = 0;
+        private readonly int _minBoardYPosition = 0;
 
         /// <summary>
         /// Coordinates used to indicate when a piece is not on the board.
         /// </summary>
         public static readonly int OffBoardCoordinate = -1;
-
-
+        
         /// <summary>
         /// Game configuration
         /// </summary>
@@ -38,15 +37,10 @@ namespace Gfi.Hiring
         public int CurrentTurn { get; private set; }
 
         private List<IChessPiece>[,] _piecesOnBoard; //int[type, color]
-        
+                
         public ChessBoard ()
         {
             InitBoard();
-
-            _maxBoardXPosition = _settings.BoardWidth - 1;
-            _maxBoardYPosition = _settings.BoardWidth - 1;
-            _minBoardXPosition = 0;
-            _minBoardYPosition = 0;
         }
 
         private void InitBoard()
@@ -75,7 +69,7 @@ namespace Gfi.Hiring
         /// <param name="x">The x coordinate of the square to place the piece at</param>
         /// <param name="y">The y coordinate of the square to place the piece at</param>
         /// <returns>True if the piece was added</returns>
-        public bool AddPiece(IChessPiece piece, int xCoordinate, int yCoordinate)
+        public bool Add(IChessPiece piece, int xCoordinate, int yCoordinate, PieceColor color)
         {
             if (!IsLegalBoardPosition(xCoordinate, yCoordinate))
             {
@@ -111,8 +105,8 @@ namespace Gfi.Hiring
         /// <returns>True if the coordinates are a valid square on the board</returns>
         public bool IsLegalBoardPosition(int xCoordinate, int yCoordinate)
         {
-            return !(xCoordinate < _minBoardXPosition || xCoordinate > _maxBoardXPosition ||
-                yCoordinate < _minBoardYPosition || yCoordinate > _maxBoardYPosition);
+            return !(xCoordinate < _minBoardXPosition || xCoordinate > MaxBoardWidth ||
+                yCoordinate < _minBoardYPosition || yCoordinate > MaxBoardHeight);
         }
 
         private void RemoveFromBoard(IChessPiece piece)
@@ -245,6 +239,11 @@ namespace Gfi.Hiring
         }
 
         #endregion
+
+        public bool IsMoveValid(Move move)
+        {
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// Repositions a piece on the board.  Any pieces in the endpoint will be removed from the board

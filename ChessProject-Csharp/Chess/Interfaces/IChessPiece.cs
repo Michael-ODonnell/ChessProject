@@ -7,6 +7,7 @@
         /// X Coordinate of the square on an IChessBoard the piece is on
         /// </summary>
         int XCoordinate { get; set; }
+
         /// <summary>
         /// Y Coordinate of the square on an IChessBoard the piece is on
         /// </summary>
@@ -28,6 +29,6 @@
         /// <param name="newXCoordinate">The x coordinate of the square being moved to</param>
         /// <param name="newYCoordinate">The y coordinate of the square being moved to</param>
         /// <returns>True when the move was valid</returns>
-        bool Move(int newXCoordinate, int newYCoordinate);
+        bool Move(MovementType moveType, int newXCoordinate, int newYCoordinate);
     }
 }

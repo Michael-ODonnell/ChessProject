@@ -7,13 +7,7 @@ namespace Gfi.Hiring {
 		
 		protected override IPawn GetPawn(PieceColor color)
 		{
-			IRule[] pawnRules = new IRule[] {
-				new EndpointSquareOccupiedRule(),
-				new CannotMoveToSameSquareRule(),
-				new EndpointSquareOccupiedRule(),
-				new CannotMoveThroughPiecesRule(),
-				new ValidPawnMoveRule()};
-			return new Pawn(_chessBoard, color, pawnRules);
+			return new Pawn(color);
 		}
 	}
 }

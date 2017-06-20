@@ -26,7 +26,7 @@ namespace Gfi.Hiring {
         public void First_Move_Sets_First_Move_Property()
         {
             _chessBoard.CurrentTurn.Returns(2);
-            _pawn.Move(1, 3);
+            _pawn.Move(MovementType.Move, 1, 3);
             Assert.That(_pawn.FirstMovedOn, Is.EqualTo(2));
         }
 
@@ -34,9 +34,9 @@ namespace Gfi.Hiring {
         public void Additional_Moves_Do_Not_Update_First_Move_Property()
         {
             _chessBoard.CurrentTurn.Returns(2);
-            _pawn.Move(1, 3);
+            _pawn.Move(MovementType.Move, 1, 3);
             _chessBoard.CurrentTurn.Returns(3);
-            _pawn.Move(1, 4);
+            _pawn.Move(MovementType.Move, 1, 4);
             Assert.That(_pawn.FirstMovedOn, Is.EqualTo(2));
         }
     }

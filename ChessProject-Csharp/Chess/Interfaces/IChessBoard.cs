@@ -21,7 +21,13 @@
         /// <param name="x">The x coordinate of the square to place the piece at</param>
         /// <param name="y">The y coordinate of the square to place the piece at</param>
         /// <returns>True if the piece was added</returns>
-        bool AddPiece(IChessPiece piece, int x, int y);
+        bool Add(IChessPiece piece, int x, int y, PieceColor color);
+        
+        /// <summary>
+        /// Checks if a move is valid.  Does not update the board
+        /// </summary>
+        /// <param name="move">Description of the move</param>
+        bool IsMoveValid(Move move);
 
         /// <summary>
         /// Repositions a piece on the board.  Any pieces in the endpoint will be removed from the board
