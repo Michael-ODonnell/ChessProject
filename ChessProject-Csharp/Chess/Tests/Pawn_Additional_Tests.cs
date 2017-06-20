@@ -3,7 +3,7 @@
 namespace Gfi.Hiring {
 
     [TestFixture]
-	public class Pawn_Tests : ChessPiece_Tests {
+	public class Pawn_Additional_Tests : ChessPiece_Tests {
 		
 		protected override IChessPiece GetPiece(PieceColor color)
         {
