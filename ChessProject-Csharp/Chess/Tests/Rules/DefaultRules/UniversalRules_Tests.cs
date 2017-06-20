@@ -5,7 +5,7 @@ using System;
 namespace Gfi.Hiring {
     
     [TestFixture]
-	public abstract class DefaultRules_Tests {
+	public abstract class UniversalRules_Tests {
 
         protected abstract IRuleSet GetRuleSet();
         protected IRuleSet _ruleset;

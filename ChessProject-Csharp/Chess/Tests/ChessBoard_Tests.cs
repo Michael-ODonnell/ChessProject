@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using NSubstitute;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -109,6 +110,6 @@ namespace Gfi.Hiring
 					Assert.That(pawn.YCoordinate, Is.EqualTo(-1));
 				}
 			}
-		}
-	}
+        }
+    }
 }

@@ -1,9 +1,9 @@
 ﻿namespace Gfi.Hiring {
     public class GameSettings {
 
-        private const int DefaultBoardWidth = 8;
-        private const int DefaultBoardHeight = 8;
-        private const int DefaultPawnsPerSide = 7;
+        public const int DefaultBoardWidth = 8;
+        public const int DefaultBoardHeight = 8;
+        public const int DefaultPawnsPerSide = 7;   // Should be DefaultBoardWidth, but this is what the original tests check for.
 
         public int MaxPawnsPerSide { get; private set; }
 
@@ -29,7 +29,7 @@
             SetRules();
         }
 
-        protected virtual void SetRules()
+        protected void SetRules()
         {
             _pieceRules[(int)PieceType.Pawn] = new DefaultPawnRules();
         }

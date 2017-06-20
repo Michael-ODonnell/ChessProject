@@ -59,7 +59,7 @@
     <Compile Include="Pieces\PieceColor.cs" />
     <Compile Include="Pieces\PieceType.cs" />
     <Compile Include="Move.cs" />
-    <Compile Include="Rules\DefaultRules\DefaultRules.cs" />
+    <Compile Include="Rules\DefaultRules\UniversalRules.cs" />
     <Compile Include="Rules\DefaultRules\DefaultPawnRules.cs" />
     <Compile Include="Rules\GeneralRules\CannotMoveThroughPiecesRule.cs" />
     <Compile Include="Rules\GeneralRules\EndpointSquareOccupiedRule.cs" />
@@ -76,7 +76,7 @@
     <Compile Include="Tests\Pawn_Additional_Tests.cs" />
     <Compile Include="Tests\Pawn_Tests.cs" />
     <Compile Include="Tests\Pawn_IPawn_Tests.cs" />
-    <Compile Include="Tests\Rules\DefaultRules\DefaultRules_Tests.cs" />
+    <Compile Include="Tests\Rules\DefaultRules\UniversalRules_Tests.cs" />
     <Compile Include="Tests\Rules\GeneralRules\CannotMoveThroughPiecesRule_Tests.cs" />
     <Compile Include="Tests\Rules\DefaultRules\DefaultPawnRules_Tests.cs" />
     <Compile Include="Tests\Rules\GeneralRules\ValidPawnMoveRule_Tests.cs" />

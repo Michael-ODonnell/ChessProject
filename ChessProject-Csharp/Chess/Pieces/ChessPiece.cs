@@ -71,6 +71,10 @@ namespace Gfi.Hiring {
             return false;
         }
 
+        /// <summary>
+        /// Sets the board
+        /// </summary>
+        /// <param name="board"></param>
         public void SetBoard(IChessBoard board)
         {
             _chessBoard = board;

@@ -327,5 +327,14 @@ namespace Gfi.Hiring {
             _chessBoard.Add(piece, 6, 3, piece.Color);
             Assert.That(piece.YCoordinate, Is.EqualTo(3));
         }
+
+        [Test]
+        public void Add_Calls_SetBoard()
+        {
+            var piece = Substitute.For<IChessPiece>();
+
+            _chessBoard.Add(piece, 6, 3, piece.Color);
+            piece.Received().SetBoard(_chessBoard);
+        }
     }
 }

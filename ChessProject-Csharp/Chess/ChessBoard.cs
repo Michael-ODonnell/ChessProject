@@ -8,8 +8,12 @@ namespace Gfi.Hiring
     /// </summary>
     public class ChessBoard : IChessBoard
     {
-        public static readonly int MaxBoardWidth = 7;
-        public static readonly int MaxBoardHeight = 7;
+        // This doesn't need to be public other than to satisfy the original tests
+        public static readonly int MaxBoardWidth = GameSettings.DefaultBoardWidth-1;
+
+        // This doesn't need to be public other than to satisfy the original tests
+        public static readonly int MaxBoardHeight = GameSettings.DefaultBoardHeight-1;
+
         private readonly int _minBoardXPosition = 0;
         private readonly int _minBoardYPosition = 0;
 
@@ -242,6 +246,11 @@ namespace Gfi.Hiring
 
         #endregion
 
+        /// <summary>
+        /// Checks if a move is valid without performing it
+        /// </summary>
+        /// <param name="move"></param>
+        /// <returns></returns>
         public bool IsMoveValid(Move move)
         {
             if (move.Piece == null)

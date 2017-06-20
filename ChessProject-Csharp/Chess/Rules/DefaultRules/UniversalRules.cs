@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 
 namespace Gfi.Hiring {
+    /// <summary>
+    /// Standard rules for all chess pieces
+    /// </summary>
     internal class UniversalRules : IRuleSet {
 
         protected List<IRule> _rules;

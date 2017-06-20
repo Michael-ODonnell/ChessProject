@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace Gfi.Hiring {
 
     [TestFixture]
-	public class DefaultPawnRules_Tests : DefaultRules_Tests {
+	public class DefaultPawnRules_Tests : UniversalRules_Tests {
 
 
         protected override IRuleSet GetRuleSet()

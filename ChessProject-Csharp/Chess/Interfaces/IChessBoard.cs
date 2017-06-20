@@ -68,6 +68,10 @@
         /// <returns>True if the path is a straight line with no pieces between the squares</returns>
         bool IsStraightClearPathBetween(int xStart, int yStart, int xEnd, int yEnd);
 
+        /// <summary>
+        /// Get the settings for the game
+        /// </summary>
+        /// <returns>The game settings</returns>
         GameSettings Settings();
     }
 }
