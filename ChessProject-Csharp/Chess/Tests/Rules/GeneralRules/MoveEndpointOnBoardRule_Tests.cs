@@ -16,7 +16,7 @@ namespace Gfi.Hiring {
 
 			Move move = new Move(piece, 0, 0, 1, 1);
 
-			Assert.IsTrue(rule.IsMoveValid(board, move));
+			Assert.That(rule.IsMoveValid(board, move), Is.True);
 		}
 
 		[Test]
@@ -29,7 +29,7 @@ namespace Gfi.Hiring {
 
 			Move move = new Move(piece, 0, 0, 1, 1);
 
-			Assert.IsFalse(rule.IsMoveValid(board, move));
+			Assert.That(rule.IsMoveValid(board, move), Is.True);
 		}
 	}
 }

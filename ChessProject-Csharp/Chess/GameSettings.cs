@@ -1,9 +1,9 @@
 ﻿namespace Gfi.Hiring {
-    internal class GameSettings {
+    public class GameSettings {
 
         private const int DefaultBoardWidth = 8;
         private const int DefaultBoardHeight = 8;
-        private const int DefaultPawnsPerSide = DefaultBoardWidth;
+        private const int DefaultPawnsPerSide = 7;
 
         public int MaxPawnsPerSide { get; private set; }
 

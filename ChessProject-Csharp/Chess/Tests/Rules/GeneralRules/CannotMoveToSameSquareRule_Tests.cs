@@ -15,7 +15,7 @@ namespace Gfi.Hiring {
 
 			Move move = new Move(piece, 0, 0, 0, 0);
 
-			Assert.IsFalse(rule.IsMoveValid(board, move));
+			Assert.That(rule.IsMoveValid(board, move), Is.False);
 		}
 
 		[Test]
@@ -27,8 +27,8 @@ namespace Gfi.Hiring {
 
 			Move move = new Move(piece, 0, 0, 0, 1);
 
-			Assert.IsTrue(rule.IsMoveValid(board, move));
-		}
+			Assert.That(rule.IsMoveValid(board, move), Is.True);
+        }
 
 		[Test]
 		public void Allow_Movement_When_Start_Y_Equals_End_Y()
@@ -39,7 +39,7 @@ namespace Gfi.Hiring {
 
 			Move move = new Move(piece, 0, 0, 1, 0);
 
-			Assert.IsTrue(rule.IsMoveValid(board, move));
-		}
+			Assert.That(rule.IsMoveValid(board, move), Is.True);
+        }
 	}
 }

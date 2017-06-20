@@ -37,6 +37,8 @@ namespace Gfi.Hiring
         public int CurrentTurn { get; private set; }
 
         private List<IChessPiece>[,] _piecesOnBoard; //int[type, color]
+
+        private IRule[] _pieceRules;
                 
         public ChessBoard ()
         {
@@ -242,7 +244,18 @@ namespace Gfi.Hiring
 
         public bool IsMoveValid(Move move)
         {
-            throw new NotImplementedException();
+            if (move.Piece == null)
+            {
+                return false;
+            }
+
+            int typeId = (int)move.Piece.Type;
+
+            if (_pieceRules[typeId] == null)
+            {
+                throw new NotImplementedException("Rules are not defined for " + move.Piece.Type);
+            }
+            return _pieceRules[typeId].IsMoveValid(this, move);
         }
 
         /// <summary>
@@ -276,6 +289,11 @@ namespace Gfi.Hiring
             {
                 RemoveFromBoard(captured);
             }
+        }
+
+        public GameSettings Settings()
+        {
+            return _settings;
         }
     }
 }

@@ -88,12 +88,12 @@ namespace Gfi.Hiring {
             for (int i = 0; i < 10; i++)
             {
                 var pawn = Substitute.For<IChessPiece>();
-                int row = i / _chessBoard.Width;
+                int row = i / _chessBoard.Settings().MaxPawnsPerSide;
                 _chessBoard.Add(pawn, row, i % _chessBoard.Width, pawn.Color);
                 if (row < 1)
                 {
                     Assert.That(pawn.XCoordinate, Is.EqualTo(row));
-                    Assert.That(pawn.YCoordinate, Is.EqualTo(i % _chessBoard.Width));
+                    Assert.That(pawn.YCoordinate, Is.EqualTo(i % _chessBoard.Settings().MaxPawnsPerSide));
                 }
                 else
                 {

@@ -67,5 +67,7 @@
         /// <param name="yEnd">The y coordinate of the square being moved to</param>
         /// <returns>True if the path is a straight line with no pieces between the squares</returns>
         bool IsStraightClearPathBetween(int xStart, int yStart, int xEnd, int yEnd);
+
+        GameSettings Settings();
     }
 }

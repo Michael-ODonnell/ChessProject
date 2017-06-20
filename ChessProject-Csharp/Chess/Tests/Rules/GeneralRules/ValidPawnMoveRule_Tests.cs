@@ -15,7 +15,7 @@ namespace Gfi.Hiring {
 			IRule rule = new ValidPawnMoveRule();
 
 			Move move = new Move(piece, 0, 1, 0, 0);
-			Assert.IsFalse(rule.IsMoveValid(board, move));
+			Assert.That(rule.IsMoveValid(board, move), Is.False);
 		}
 
 		[Test]
@@ -28,7 +28,7 @@ namespace Gfi.Hiring {
 			IRule rule = new ValidPawnMoveRule();
 
 			Move move = new Move(piece, 0, 6, 0, 7);
-			Assert.IsFalse(rule.IsMoveValid(board, move));
+			Assert.That(rule.IsMoveValid(board, move), Is.False);
         }
 
         [Test]
@@ -40,7 +40,7 @@ namespace Gfi.Hiring {
             IRule rule = new ValidPawnMoveRule();
 
             Move move = new Move(piece, 0, 1, 1, 1);
-            Assert.IsFalse(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.False);
         }
 
         [Test]
@@ -53,7 +53,7 @@ namespace Gfi.Hiring {
             IRule rule = new ValidPawnMoveRule();
 
             Move move = new Move(piece, 0, 6, 1, 6);
-            Assert.IsFalse(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.False);
         }
 
         [Test]
@@ -66,7 +66,7 @@ namespace Gfi.Hiring {
 			IRule rule = new ValidPawnMoveRule();
 
 			Move move = new Move(piece, 0, 1, 0, 2);
-			Assert.IsFalse(rule.IsMoveValid(board, move));
+			Assert.That(rule.IsMoveValid(board, move), Is.False);
 		}
 		
 		[Test]
@@ -79,7 +79,7 @@ namespace Gfi.Hiring {
 			IRule rule = new ValidPawnMoveRule();
 
 			Move move = new Move(piece, 0, 6, 0, 5);
-			Assert.IsFalse(rule.IsMoveValid(board, move));
+			Assert.That(rule.IsMoveValid(board, move), Is.False);
 		}
 
 		[Test]
@@ -92,7 +92,7 @@ namespace Gfi.Hiring {
 			IRule rule = new ValidPawnMoveRule();
 
 			Move move = new Move(piece, 0, 1, 0, 4);
-			Assert.IsFalse(rule.IsMoveValid(board, move));
+			Assert.That(rule.IsMoveValid(board, move), Is.False);
 		}
 
 		[Test]
@@ -105,7 +105,7 @@ namespace Gfi.Hiring {
 			IRule rule = new ValidPawnMoveRule();
 
 			Move move = new Move(piece, 0, 6, 0, 3);
-			Assert.IsFalse(rule.IsMoveValid(board, move));
+			Assert.That(rule.IsMoveValid(board, move), Is.False);
         }
 
         [Test]
@@ -118,7 +118,7 @@ namespace Gfi.Hiring {
             IRule rule = new ValidPawnMoveRule();
 
             Move move = new Move(piece, 0, 1, 0, 2);
-            Assert.IsTrue(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.True);
         }
 
         [Test]
@@ -131,7 +131,7 @@ namespace Gfi.Hiring {
             IRule rule = new ValidPawnMoveRule();
 
             Move move = new Move(piece, 0, 7, 0, 6);
-            Assert.IsTrue(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.True);
         }
 
         [Test]
@@ -144,7 +144,7 @@ namespace Gfi.Hiring {
 			IRule rule = new ValidPawnMoveRule();
 
 			Move move = new Move(piece, 0, 1, 0, 3);
-			Assert.IsTrue(rule.IsMoveValid(board, move));
+			Assert.That(rule.IsMoveValid(board, move), Is.True);
 		}
 
 		[Test]
@@ -157,7 +157,7 @@ namespace Gfi.Hiring {
 			IRule rule = new ValidPawnMoveRule();
 
 			Move move = new Move(piece, 0, 6, 0, 4);
-			Assert.IsTrue(rule.IsMoveValid(board, move));
+			Assert.That(rule.IsMoveValid(board, move), Is.True);
 		}
 
 		[Test]
@@ -170,7 +170,7 @@ namespace Gfi.Hiring {
 			IRule rule = new ValidPawnMoveRule();
 
 			Move move = new Move(piece, 0, 1, 0, 3);
-			Assert.IsFalse(rule.IsMoveValid(board, move));
+			Assert.That(rule.IsMoveValid(board, move), Is.False);
 		}
 
 		[Test]
@@ -183,7 +183,7 @@ namespace Gfi.Hiring {
 			IRule rule = new ValidPawnMoveRule();
 
 			Move move = new Move(piece, 0, 6, 0, 4);
-			Assert.IsFalse(rule.IsMoveValid(board, move));
+			Assert.That(rule.IsMoveValid(board, move), Is.False);
 		}
 
 		[Test]
@@ -196,9 +196,9 @@ namespace Gfi.Hiring {
 			IRule rule = new ValidPawnMoveRule();
 
 			Move leftCapture = new Move(piece, 1, 1, 0, 2);
-			Assert.IsTrue(rule.IsMoveValid(board, leftCapture));
-			Move rightCapture = new Move(piece, 1, 1, 2, 2);
-			Assert.IsTrue(rule.IsMoveValid(board, rightCapture));
+			Assert.That(rule.IsMoveValid(board, leftCapture), Is.True);
+            Move rightCapture = new Move(piece, 1, 1, 2, 2);
+			Assert.That(rule.IsMoveValid(board, rightCapture), Is.True);
 		}
 
 		[Test]
@@ -211,9 +211,9 @@ namespace Gfi.Hiring {
 			IRule rule = new ValidPawnMoveRule();
 
 			Move leftCapture = new Move(piece, 1, 7, 0, 6);
-			Assert.IsTrue(rule.IsMoveValid(board, leftCapture));
-			Move rightCapture = new Move(piece, 1, 7, 2, 6);
-			Assert.IsTrue(rule.IsMoveValid(board, rightCapture));
+			Assert.That(rule.IsMoveValid(board, leftCapture), Is.True);
+            Move rightCapture = new Move(piece, 1, 7, 2, 6);
+			Assert.That(rule.IsMoveValid(board, rightCapture), Is.True);
 		}
 
 		[Test]
@@ -226,9 +226,9 @@ namespace Gfi.Hiring {
 			IRule rule = new ValidPawnMoveRule();
 
 			Move leftCapture = new Move(piece, 1, 4, 0, 5);
-			Assert.IsFalse(rule.IsMoveValid(board, leftCapture));
+			Assert.That(rule.IsMoveValid(board, leftCapture), Is.False);
 			Move rightCapture = new Move(piece, 1, 4, 3, 5);
-			Assert.IsFalse(rule.IsMoveValid(board, rightCapture));
+			Assert.That(rule.IsMoveValid(board, rightCapture), Is.False);
 		}
 
 		[Test]
@@ -241,9 +241,9 @@ namespace Gfi.Hiring {
 			IRule rule = new ValidPawnMoveRule();
 
 			Move leftCapture = new Move(piece, 1, 3, 0, 2);
-			Assert.IsFalse(rule.IsMoveValid(board, leftCapture));
+			Assert.That(rule.IsMoveValid(board, leftCapture), Is.False);
 			Move rightCapture = new Move(piece, 1, 3, 3, 2);
-			Assert.IsFalse(rule.IsMoveValid(board, rightCapture));
+			Assert.That(rule.IsMoveValid(board, rightCapture), Is.False);
 		}
 
 		[Test]
@@ -256,9 +256,9 @@ namespace Gfi.Hiring {
 			IRule rule = new ValidPawnMoveRule();
 
 			Move leftCapture = new Move(piece, 1, 4, 0, 5);
-			Assert.IsTrue(rule.IsMoveValid(board, leftCapture));
+			Assert.That(rule.IsMoveValid(board, leftCapture), Is.True);
 			Move rightCapture = new Move(piece, 1, 4, 2, 5);
-			Assert.IsTrue(rule.IsMoveValid(board, rightCapture));
+			Assert.That(rule.IsMoveValid(board, rightCapture), Is.True);
 		}
 
 		[Test]
@@ -271,9 +271,9 @@ namespace Gfi.Hiring {
 			IRule rule = new ValidPawnMoveRule();
 
 			Move leftCapture = new Move(piece, 1, 3, 0, 2);
-			Assert.IsTrue(rule.IsMoveValid(board, leftCapture));
+			Assert.That(rule.IsMoveValid(board, leftCapture), Is.True);
 			Move rightCapture = new Move(piece, 1, 3, 2, 2);
-			Assert.IsTrue(rule.IsMoveValid(board, rightCapture));
+			Assert.That(rule.IsMoveValid(board, rightCapture), Is.True);
 		}
 
 		[Test]
@@ -286,9 +286,9 @@ namespace Gfi.Hiring {
 			IRule rule = new ValidPawnMoveRule();
 
 			Move leftCapture = new Move(piece, 1, 1, 0, 3);
-			Assert.IsFalse(rule.IsMoveValid(board, leftCapture));
+			Assert.That(rule.IsMoveValid(board, leftCapture), Is.False);
 			Move rightCapture = new Move(piece, 1, 1, 2, 3);
-			Assert.IsFalse(rule.IsMoveValid(board, rightCapture));
+			Assert.That(rule.IsMoveValid(board, rightCapture), Is.False);
 		}
 
 		[Test]
@@ -301,9 +301,9 @@ namespace Gfi.Hiring {
 			IRule rule = new ValidPawnMoveRule();
 
 			Move leftCapture = new Move(piece, 1, 6, 0, 4);
-			Assert.IsFalse(rule.IsMoveValid(board, leftCapture));
+			Assert.That(rule.IsMoveValid(board, leftCapture), Is.False);
 			Move rightCapture = new Move(piece, 1, 6, 2, 4);
-			Assert.IsFalse(rule.IsMoveValid(board, rightCapture));
+			Assert.That(rule.IsMoveValid(board, rightCapture), Is.False);
 		}
 
 		[Test]
@@ -316,7 +316,7 @@ namespace Gfi.Hiring {
 			IRule rule = new ValidPawnMoveRule();
 
 			Move move = new Move(piece, 0, 2, 0, 4);
-			Assert.IsFalse(rule.IsMoveValid(board, move));
+			Assert.That(rule.IsMoveValid(board, move), Is.False);
 		}
 
 		[Test]
@@ -329,7 +329,7 @@ namespace Gfi.Hiring {
 			IRule rule = new ValidPawnMoveRule();
 
 			Move move = new Move(piece, 0, 5, 0, 3);
-			Assert.IsFalse(rule.IsMoveValid(board, move));
+			Assert.That(rule.IsMoveValid(board, move), Is.False);
 		}
 
 		private IChessBoard SetupBoard(int occupyRow =-1, PieceColor color = PieceColor.Black, int turn = 3)

@@ -17,7 +17,7 @@ namespace Gfi.Hiring {
             Move move = new Move(piece, 0, 0, 0, 5);
             Assert.IsTrue(rule.IsMoveValid(board, move));
             move = new Move(piece, 0, 5, 0, 0);
-            Assert.IsTrue(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.True);
         }
 
         [Test]
@@ -30,9 +30,9 @@ namespace Gfi.Hiring {
 			board.IsStraightClearPathBetween(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>()).Returns(false);
 
 			Move move = new Move(piece, 0, 0, 0, 5);
-			Assert.IsFalse(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.False);
             move = new Move(piece, 0, 5, 0, 0);
-            Assert.IsFalse(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.False);
         }
 
         [Test]
@@ -45,9 +45,9 @@ namespace Gfi.Hiring {
             board.IsStraightClearPathBetween(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>()).Returns(true);
             
             Move move = new Move(piece, 0, 0, 5, 0);
-            Assert.IsTrue(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.True);
             move = new Move(piece, 5, 0, 0, 0);
-            Assert.IsTrue(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.True);
         }
 
         [Test]
@@ -60,9 +60,9 @@ namespace Gfi.Hiring {
             board.IsStraightClearPathBetween(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>()).Returns(false);
 
             Move move = new Move(piece, 0, 0, 5, 0);
-            Assert.IsFalse(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.False);
             move = new Move(piece, 5, 0, 0, 0);
-            Assert.IsFalse(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.False);
         }
 
         [Test]
@@ -75,9 +75,9 @@ namespace Gfi.Hiring {
             board.IsStraightClearPathBetween(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>()).Returns(true);
 
             Move move = new Move(piece, 0, 0, 5, 5);
-            Assert.IsTrue(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.True);
             move = new Move(piece, 5, 5, 0, 0);
-            Assert.IsTrue(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.True);
         }
 
         [Test]
@@ -90,9 +90,9 @@ namespace Gfi.Hiring {
             board.IsStraightClearPathBetween(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>()).Returns(false);
 
             Move move = new Move(piece, 0, 0, 5, 5);
-            Assert.IsFalse(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.False);
             move = new Move(piece, 5, 5, 0, 0);
-            Assert.IsFalse(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.False);
         }
 
         [Test]
@@ -105,9 +105,9 @@ namespace Gfi.Hiring {
             board.IsStraightClearPathBetween(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>()).Returns(true);
 
             Move move = new Move(piece, 5, 0, 0, 5);
-            Assert.IsTrue(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.True);
             move = new Move(piece, 0, 5, 5, 0);
-            Assert.IsTrue(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.True);
         }
 
         [Test]
@@ -120,9 +120,9 @@ namespace Gfi.Hiring {
             board.IsStraightClearPathBetween(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>()).Returns(false);
 
             Move move = new Move(piece, 5, 0, 0, 5);
-            Assert.IsFalse(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.False);
             move = new Move(piece, 0, 5, 5, 0);
-            Assert.IsFalse(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.False);
         }
     }
 }

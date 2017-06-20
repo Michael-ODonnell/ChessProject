@@ -17,8 +17,8 @@ namespace Gfi.Hiring {
 			IRule rule = new EndpointSquareOccupiedRule();
 
 			Move move = new Move(mover, 0, 0, 1, 1);
-            
-            Assert.IsFalse(rule.IsMoveValid(board, move));
+
+            Assert.That(rule.IsMoveValid(board, move), Is.False);
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace Gfi.Hiring {
 
             Move move = new Move(mover, 0, 0, 1, 1);
 
-            Assert.IsFalse(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.False);
         }
 
         [Test]
@@ -48,7 +48,7 @@ namespace Gfi.Hiring {
 
             Move move = new Move(mover, 0, 0, 1, 1);
 
-            Assert.IsTrue(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.True);
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace Gfi.Hiring {
 
             Move move = new Move(mover, 0, 0, 1, 1);
 
-            Assert.IsTrue(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.True);
         }
 
         [Test]
@@ -78,7 +78,7 @@ namespace Gfi.Hiring {
 
             Move move = new Move(mover, 0, 0, 1, 1);
 
-            Assert.IsTrue(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.True);
         }
 
         [Test]
@@ -93,7 +93,7 @@ namespace Gfi.Hiring {
 
             Move move = new Move(mover, 0, 0, 1, 1);
 
-            Assert.IsTrue(rule.IsMoveValid(board, move));
+            Assert.That(rule.IsMoveValid(board, move), Is.True);
         }
 
         private IChessBoard SetupBoardWithOccupiedSquare(PieceColor color)
