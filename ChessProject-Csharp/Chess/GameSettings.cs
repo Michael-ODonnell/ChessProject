@@ -10,6 +10,8 @@
         public int BoardWidth { get; private set; }
         public int BoardHeight { get; private set; }
 
+        private IRuleSet[] _pieceRules;
+
         /// <summary>
         /// Games settings struct.  Can use named params to configure settings individually
         /// </summary>
@@ -21,6 +23,20 @@
             BoardWidth = boardWidth;
             BoardHeight = boardHeight;
             MaxPawnsPerSide = pawnsPerSide;
+
+            _pieceRules = new IRuleSet[(int)PieceType.Count];
+
+            SetRules();
+        }
+
+        protected virtual void SetRules()
+        {
+            _pieceRules[(int)PieceType.Pawn] = new DefaultPawnRules();
+        }
+
+        public IRuleSet GetRulesFor(PieceType type)
+        {
+            return _pieceRules[(int)type];
         }
     }
 }

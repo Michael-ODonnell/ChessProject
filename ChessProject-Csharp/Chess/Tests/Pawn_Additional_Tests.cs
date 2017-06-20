@@ -5,7 +5,7 @@ namespace Gfi.Hiring {
 	[TestFixture]
 	public class Pawn_Additional_Tests : ChessPiece_Tests {
 		
-		protected override IChessPiece GetPiece(PieceColor color)
+		protected override IChessPiece CreatePiece(PieceType type, PieceColor color)
 		{
 			return new Pawn(color);
 		}

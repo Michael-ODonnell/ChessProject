@@ -29,7 +29,7 @@ namespace Gfi.Hiring {
 
 			Move move = new Move(piece, 0, 0, 1, 1);
 
-			Assert.That(rule.IsMoveValid(board, move), Is.True);
+			Assert.That(rule.IsMoveValid(board, move), Is.False);
 		}
 	}
 }

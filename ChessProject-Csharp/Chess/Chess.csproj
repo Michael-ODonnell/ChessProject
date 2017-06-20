@@ -59,6 +59,7 @@
     <Compile Include="Pieces\PieceColor.cs" />
     <Compile Include="Pieces\PieceType.cs" />
     <Compile Include="Move.cs" />
+    <Compile Include="Rules\DefaultRules\DefaultRules.cs" />
     <Compile Include="Rules\DefaultRules\DefaultPawnRules.cs" />
     <Compile Include="Rules\GeneralRules\CannotMoveThroughPiecesRule.cs" />
     <Compile Include="Rules\GeneralRules\EndpointSquareOccupiedRule.cs" />

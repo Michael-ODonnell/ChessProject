@@ -65,19 +65,15 @@ namespace Gfi.Hiring {
                 XCoordinate = newXCoordinate;
                 YCoordinate = newYCoordinate;
                 _chessBoard.UpdateBoard(move);
+                return true;
             }
 
-            return true;
+            return false;
         }
 
-        public void AddToBoard(IChessBoard board)
+        public void SetBoard(IChessBoard board)
         {
             _chessBoard = board;
-        }
-
-        public void RemoveFromBoard()
-        {
-            _chessBoard = null;
         }
     }
 }

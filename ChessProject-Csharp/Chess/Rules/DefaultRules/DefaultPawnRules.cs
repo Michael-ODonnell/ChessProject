@@ -4,21 +4,11 @@ using System.Linq;
 using System.Text;
 
 namespace Gfi.Hiring {
-    internal class DefaultPawnRules : IRuleSet {
+    internal class DefaultPawnRules : UniversalRules {
         
         public DefaultPawnRules()
         {
-            throw new NotImplementedException();
-        }
-
-        public bool IsMoveValid(IChessBoard board, Move move)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IRule[] Rules()
-        {
-            throw new NotImplementedException();
+            _rules.Add(new ValidPawnMoveRule());
         }
     }
 }

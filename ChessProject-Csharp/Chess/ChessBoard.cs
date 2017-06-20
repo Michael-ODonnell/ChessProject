@@ -37,8 +37,6 @@ namespace Gfi.Hiring
         public int CurrentTurn { get; private set; }
 
         private List<IChessPiece>[,] _piecesOnBoard; //int[type, color]
-
-        private IRule[] _pieceRules;
                 
         public ChessBoard ()
         {
@@ -90,6 +88,7 @@ namespace Gfi.Hiring
                 piece.XCoordinate = xCoordinate;
                 piece.YCoordinate = yCoordinate;
                 _piecesOnBoard[(int)PieceType.Pawn, (int)piece.Color].Add(piece);
+                piece.SetBoard(this);
                 return true;
             }
             else
@@ -115,6 +114,7 @@ namespace Gfi.Hiring
         {
             piece.XCoordinate = OffBoardCoordinate;
             piece.YCoordinate = OffBoardCoordinate;
+            piece.SetBoard(null);
         }
 
         /// <summary>
@@ -249,13 +249,13 @@ namespace Gfi.Hiring
                 return false;
             }
 
-            int typeId = (int)move.Piece.Type;
+            IRuleSet pieceRuleset = _settings.GetRulesFor(move.Piece.Type);
 
-            if (_pieceRules[typeId] == null)
+            if (pieceRuleset == null)
             {
                 throw new NotImplementedException("Rules are not defined for " + move.Piece.Type);
             }
-            return _pieceRules[typeId].IsMoveValid(this, move);
+            return pieceRuleset.IsMoveValid(this, move);
         }
 
         /// <summary>

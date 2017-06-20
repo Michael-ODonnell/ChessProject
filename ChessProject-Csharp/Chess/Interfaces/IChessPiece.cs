@@ -30,5 +30,11 @@
         /// <param name="newYCoordinate">The y coordinate of the square being moved to</param>
         /// <returns>True when the move was valid</returns>
         bool Move(MovementType moveType, int newXCoordinate, int newYCoordinate);
+
+        /// <summary>
+        /// Sets the board the piece is on
+        /// </summary>
+        /// <param name="board">Board the piece is currently on</param>
+        void SetBoard(IChessBoard board);
     }
 }
