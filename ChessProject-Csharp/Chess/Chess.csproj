@@ -59,6 +59,7 @@
     <Compile Include="Pieces\PieceColor.cs" />
     <Compile Include="Pieces\PieceType.cs" />
     <Compile Include="Move.cs" />
+    <Compile Include="Rules\DefaultRules\DefaultKnightRules.cs" />
     <Compile Include="Rules\DefaultRules\UniversalRules.cs" />
     <Compile Include="Rules\DefaultRules\DefaultPawnRules.cs" />
     <Compile Include="Rules\GeneralRules\CannotMoveVerticallyRule.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Tests\Pawn_Additional_Tests.cs" />
     <Compile Include="Tests\Pawn_Tests.cs" />
     <Compile Include="Tests\Pawn_IPawn_Tests.cs" />
+    <Compile Include="Tests\Rules\DefaultRules\DefaultKnightRules_Tests.cs" />
     <Compile Include="Tests\Rules\DefaultRules\UniversalRules_Tests.cs" />
     <Compile Include="Tests\Rules\GeneralRules\MustMoveThreeSquaresRule_Tests.cs" />
     <Compile Include="Tests\Rules\GeneralRules\CannotMoveVerticallyRule_Tests.cs" />
