@@ -32,6 +32,7 @@
         protected void SetRules()
         {
             _pieceRules[(int)PieceType.Pawn] = new DefaultPawnRules();
+            _pieceRules[(int)PieceType.Knight] = new DefaultKnightRules();
         }
 
         public IRuleSet GetRulesFor(PieceType type)
