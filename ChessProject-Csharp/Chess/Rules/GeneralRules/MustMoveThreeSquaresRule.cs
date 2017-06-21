@@ -2,7 +2,7 @@
 
 namespace Gfi.Hiring {
     /// <summary>
-    /// Checks that the move endpoint is on the board
+    /// Checks that the move endpoint is exactly three squares from the start point in any combination of directions
     /// </summary>
     class MustMoveThreeSquaresRule : IRule {
         
