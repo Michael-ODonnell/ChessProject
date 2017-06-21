@@ -1,11 +1,13 @@
-﻿namespace Gfi.Hiring {
+﻿using System;
+
+namespace Gfi.Hiring {
     /// <summary>
     /// Prevent bishop, knight and pawn movement along the y=c axis
     /// </summary>
-    class CannotMoveHorizontallyRule : IRule {
+    class CannotMoveVerticallyRule : IRule {
         public bool IsMoveValid(IChessBoard board, Move move)
         {
-            return move.StartingX == move.EndingX;
+            throw new NotImplementedException();
         }
     }
 }

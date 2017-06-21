@@ -61,6 +61,7 @@
     <Compile Include="Move.cs" />
     <Compile Include="Rules\DefaultRules\UniversalRules.cs" />
     <Compile Include="Rules\DefaultRules\DefaultPawnRules.cs" />
+    <Compile Include="Rules\GeneralRules\CannotMoveVerticallyRule.cs" />
     <Compile Include="Rules\GeneralRules\CannotMoveThroughPiecesRule.cs" />
     <Compile Include="Rules\GeneralRules\EndpointSquareOccupiedRule.cs" />
     <Compile Include="Rules\GeneralRules\CannotMoveHorizontallyRule.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Tests\Pawn_Tests.cs" />
     <Compile Include="Tests\Pawn_IPawn_Tests.cs" />
     <Compile Include="Tests\Rules\DefaultRules\UniversalRules_Tests.cs" />
+    <Compile Include="Tests\Rules\GeneralRules\CannotMoveVerticallyRule_Tests.cs" />
     <Compile Include="Tests\Rules\GeneralRules\CannotMoveThroughPiecesRule_Tests.cs" />
     <Compile Include="Tests\Rules\DefaultRules\DefaultPawnRules_Tests.cs" />
     <Compile Include="Tests\Rules\GeneralRules\ValidPawnMoveRule_Tests.cs" />
