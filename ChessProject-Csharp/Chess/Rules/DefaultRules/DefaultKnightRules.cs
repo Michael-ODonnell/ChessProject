@@ -11,7 +11,9 @@ namespace Gfi.Hiring {
         
         public DefaultKnightRules()
         {
-            throw new NotImplementedException();
+            _rules.Add(new CannotMoveHorizontallyRule());
+            _rules.Add(new CannotMoveVerticallyRule());
+            _rules.Add(new MustMoveThreeSquaresRule());
         }
     }
 }
