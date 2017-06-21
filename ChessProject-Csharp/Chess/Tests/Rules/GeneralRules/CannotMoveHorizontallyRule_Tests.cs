@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Gfi.Hiring {
 
-    [TestFixture]
+	[TestFixture]
 	public class CannotMoveHorizontallyRule_Tests {
 
 		[Test]
@@ -27,8 +27,8 @@ namespace Gfi.Hiring {
 
 			Move move = new Move(piece, 1, 1, 0, 0);
 
-            Assert.That(rule.IsMoveValid(board, move), Is.False);
-        }
+			Assert.That(rule.IsMoveValid(board, move), Is.False);
+		}
 
 		[Test]
 		public void Allow_Movement_When_Start_X_Equals_End_X()
@@ -39,8 +39,8 @@ namespace Gfi.Hiring {
 
 			Move move = new Move(piece, 3, 0, 3, 1);
 
-            Assert.That(rule.IsMoveValid(board, move), Is.True);
-        }
+			Assert.That(rule.IsMoveValid(board, move), Is.True);
+		}
 
 		[Test]
 		public void Allow_Movement_Across_Multiple_Squares_When_Start_X_Equals_End_X()
@@ -53,7 +53,7 @@ namespace Gfi.Hiring {
 
 			Move move = new Move(piece, 0, 0, 0, board.Height-1);
 
-            Assert.That(rule.IsMoveValid(board, move));
+			Assert.That(rule.IsMoveValid(board, move));
 		}
 	}
 }
