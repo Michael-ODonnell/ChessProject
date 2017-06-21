@@ -66,6 +66,7 @@
     <Compile Include="Rules\GeneralRules\EndpointSquareOccupiedRule.cs" />
     <Compile Include="Rules\GeneralRules\CannotMoveHorizontallyRule.cs" />
     <Compile Include="Rules\GeneralRules\CannotMoveToSameSquareRule.cs" />
+    <Compile Include="Rules\GeneralRules\MustMoveThreeSquaresRule.cs" />
     <Compile Include="Rules\GeneralRules\ValidPawnMoveRule.cs" />
     <Compile Include="Rules\GeneralRules\MoveEndpointOnBoardRule.cs" />
     <Compile Include="Tests\ChessBoard_Additional_Tests.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Tests\Pawn_Tests.cs" />
     <Compile Include="Tests\Pawn_IPawn_Tests.cs" />
     <Compile Include="Tests\Rules\DefaultRules\UniversalRules_Tests.cs" />
+    <Compile Include="Tests\Rules\GeneralRules\MustMoveThreeSquaresRule_Tests.cs" />
     <Compile Include="Tests\Rules\GeneralRules\CannotMoveVerticallyRule_Tests.cs" />
     <Compile Include="Tests\Rules\GeneralRules\CannotMoveThroughPiecesRule_Tests.cs" />
     <Compile Include="Tests\Rules\DefaultRules\DefaultPawnRules_Tests.cs" />
