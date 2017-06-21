@@ -16,7 +16,7 @@ namespace Gfi.Hiring {
         [Test]
         public void Pawn_RuleSet_Contains_ValidPawnMoveRule()
         {
-            Assert.That(RuleSetContainsRule(_ruleset, typeof(EndpointSquareOccupiedRule)), Is.True);
+            Assert.That(RuleSetContainsRule(_ruleset, typeof(ValidPawnMoveRule)), Is.True);
 
         }
     }
