@@ -11,9 +11,9 @@ namespace Gfi.Hiring {
 		{
 			var board = Substitute.For<IChessBoard>();
 			var piece = Substitute.For<IChessPiece>();
-			IRule rule = new CannotMoveHorizontallyRule();
+			IRule rule = new CannotMoveOnXAxisRule();
 
-			Move move = new Move(piece, 0, 0, 1, 1);
+			Move move = new Move(piece, 1, 0, 0, 0);
 
 			Assert.That(rule.IsMoveValid(board, move), Is.False);
 		}
@@ -23,9 +23,9 @@ namespace Gfi.Hiring {
 		{
 			var board = Substitute.For<IChessBoard>();
 			var piece = Substitute.For<IChessPiece>();
-			IRule rule = new CannotMoveHorizontallyRule();
+			IRule rule = new CannotMoveOnXAxisRule();
 
-			Move move = new Move(piece, 1, 1, 0, 0);
+			Move move = new Move(piece, 0, 0, 1, 0);
 
 			Assert.That(rule.IsMoveValid(board, move), Is.False);
 		}
@@ -35,7 +35,7 @@ namespace Gfi.Hiring {
 		{
 			var board = Substitute.For<IChessBoard>();
 			var piece = Substitute.For<IChessPiece>();
-			IRule rule = new CannotMoveHorizontallyRule();
+			IRule rule = new CannotMoveOnXAxisRule();
 
 			Move move = new Move(piece, 3, 0, 3, 1);
 
@@ -47,13 +47,25 @@ namespace Gfi.Hiring {
 		{
 			var board = Substitute.For<IChessBoard>();
 			var piece = Substitute.For<IChessPiece>();
-			IRule rule = new CannotMoveHorizontallyRule();
+			IRule rule = new CannotMoveOnXAxisRule();
 
 			board.Width.Returns(8);
 
 			Move move = new Move(piece, 0, 0, 0, board.Height-1);
 
 			Assert.That(rule.IsMoveValid(board, move));
-		}
-	}
+        }
+
+        [Test]
+        public void Allow_Movement_On_X_When_Y_Changes()
+        {
+            var board = Substitute.For<IChessBoard>();
+            var piece = Substitute.For<IChessPiece>();
+            IRule rule = new CannotMoveOnYAxisRule();
+
+            Move move = new Move(piece, 0, 0, 1, 1);
+
+            Assert.That(rule.IsMoveValid(board, move), Is.True);
+        }
+    }
 }

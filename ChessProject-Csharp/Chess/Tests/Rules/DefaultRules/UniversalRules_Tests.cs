@@ -9,11 +9,14 @@ namespace Gfi.Hiring {
 
         protected abstract IRuleSet GetRuleSet();
         protected IRuleSet _ruleset;
+        protected IChessBoard _board;
 
         [SetUp]
         public void SetUp()
         {
             _ruleset = GetRuleSet();
+            _board = Substitute.For<IChessBoard>();
+            _board.IsLegalBoardPosition(0, 0).ReturnsForAnyArgs(true);
         }
 
         protected bool RuleSetContainsRule(IRuleSet ruleset, Type type)

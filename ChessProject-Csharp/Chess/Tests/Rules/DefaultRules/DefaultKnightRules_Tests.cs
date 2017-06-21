@@ -16,13 +16,13 @@ namespace Gfi.Hiring {
 		[Test]
 		public void Knight_RuleSet_Contains_CannotMoveHorizontallyRule()
 		{
-			Assert.That(RuleSetContainsRule(_ruleset, typeof(CannotMoveHorizontallyRule)), Is.True);
+			Assert.That(RuleSetContainsRule(_ruleset, typeof(CannotMoveOnXAxisRule)), Is.True);
 		}
 
 		[Test]
 		public void Knight_RuleSet_Contains_CannotMoveVerticallyRule()
 		{
-			Assert.That(RuleSetContainsRule(_ruleset, typeof(CannotMoveVerticallyRule)), Is.True);
+			Assert.That(RuleSetContainsRule(_ruleset, typeof(CannotMoveOnYAxisRule)), Is.True);
 		}
 
 		[Test]
@@ -34,45 +34,41 @@ namespace Gfi.Hiring {
         [Test]
         public void KnightCannotMoveThreeSquaresLeft()
         {
-            var board = Substitute.For<IChessBoard>();
             var piece = Substitute.For<IChessPiece>();
             Move move = new Move(piece, 3, 0, 0, 0);
-            board.IsMoveValid(move).ReturnsForAnyArgs(_ruleset.IsMoveValid(board, move));
+            _board.IsMoveValid(move).ReturnsForAnyArgs(_ruleset.IsMoveValid(_board, move));
             
-            Assert.That(board.IsMoveValid(move), Is.False);
+            Assert.That(_board.IsMoveValid(move), Is.False);
         }
 
         [Test]
         public void KnightCannotMoveThreeSquaresUp()
         {
-            var board = Substitute.For<IChessBoard>();
             var piece = Substitute.For<IChessPiece>();
             Move move = new Move(piece, 0, 0, 0, 3);
-            board.IsMoveValid(move).ReturnsForAnyArgs(_ruleset.IsMoveValid(board, move));
+            _board.IsMoveValid(move).ReturnsForAnyArgs(_ruleset.IsMoveValid(_board, move));
 
-            Assert.That(board.IsMoveValid(move), Is.False);
+            Assert.That(_board.IsMoveValid(move), Is.False);
         }
 
         [Test]
         public void KnightCannotMoveThreeSquaresDown()
         {
-            var board = Substitute.For<IChessBoard>();
             var piece = Substitute.For<IChessPiece>();
             Move move = new Move(piece, 0, 3, 0, 0);
-            board.IsMoveValid(move).ReturnsForAnyArgs(_ruleset.IsMoveValid(board, move));
+            _board.IsMoveValid(move).ReturnsForAnyArgs(_ruleset.IsMoveValid(_board, move));
 
-            Assert.That(board.IsMoveValid(move), Is.False);
+            Assert.That(_board.IsMoveValid(move), Is.False);
         }
 
         [Test]
         public void KnightCannotMoveThreeSquaresRight()
         {
-            var board = Substitute.For<IChessBoard>();
             var piece = Substitute.For<IChessPiece>();
             Move move = new Move(piece, 0, 0, 3, 0);
-            board.IsMoveValid(move).ReturnsForAnyArgs(_ruleset.IsMoveValid(board, move));
+            _board.IsMoveValid(move).ReturnsForAnyArgs(_ruleset.IsMoveValid(_board, move));
 
-            Assert.That(board.IsMoveValid(move), Is.False);
+            Assert.That(_board.IsMoveValid(move), Is.False);
         }
     }
 }

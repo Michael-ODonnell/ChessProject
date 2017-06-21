@@ -11,7 +11,9 @@ namespace Gfi.Hiring {
         
         public DefaultBishopRules()
         {
-            throw new NotImplementedException();
+            _rules.Add(new CannotMoveOnXAxisRule());
+            _rules.Add(new CannotMoveOnYAxisRule());
+            _rules.Add(new MustMoveInStraightLineRule());
         }
     }
 }
