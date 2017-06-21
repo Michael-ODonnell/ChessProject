@@ -77,8 +77,10 @@ namespace Gfi.Hiring {
         {
             var piece = Substitute.For<IChessPiece>();
             Move move = new Move(piece, 0, 0, 1, 1);
-            _board.IsMoveValid(move).ReturnsForAnyArgs(_ruleset.IsMoveValid(_board, move));
+            _board.IsMoveValid(move).ReturnsForAnyArgs(x => { return _ruleset.IsMoveValid(_board, move); });
 
+
+            bool result = _board.IsMoveValid(move);
             Assert.That(_board.IsMoveValid(move), Is.True);
         }
 
@@ -87,7 +89,7 @@ namespace Gfi.Hiring {
         {
             var piece = Substitute.For<IChessPiece>();
             Move move = new Move(piece, 0, 1, 1, 0);
-            _board.IsMoveValid(move).ReturnsForAnyArgs(_ruleset.IsMoveValid(_board, move));
+            _board.IsMoveValid(move).ReturnsForAnyArgs(x => { return _ruleset.IsMoveValid(_board, move); });
 
             Assert.That(_board.IsMoveValid(move), Is.True);
         }

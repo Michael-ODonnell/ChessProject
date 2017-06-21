@@ -17,6 +17,7 @@ namespace Gfi.Hiring {
             _ruleset = GetRuleSet();
             _board = Substitute.For<IChessBoard>();
             _board.IsLegalBoardPosition(0, 0).ReturnsForAnyArgs(true);
+            _board.IsStraightClearPathBetween(0, 0, 0, 0).ReturnsForAnyArgs(true);
         }
 
         protected bool RuleSetContainsRule(IRuleSet ruleset, Type type)
@@ -53,7 +54,7 @@ namespace Gfi.Hiring {
         [Test]
         public void Pawn_RuleSet_Contains_CannotMoveThroughPiecesRule()
         {
-            Assert.That(RuleSetContainsRule(_ruleset, typeof(EndpointSquareOccupiedRule)), Is.True);
+            Assert.That(RuleSetContainsRule(_ruleset, typeof(CannotMoveThroughPiecesRule)), Is.True);
 
         }
         [Test]

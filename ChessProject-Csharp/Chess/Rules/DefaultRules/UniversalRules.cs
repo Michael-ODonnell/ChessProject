@@ -17,6 +17,7 @@ namespace Gfi.Hiring {
             _rules.Add(new MoveEndpointOnBoardRule());
             _rules.Add(new EndpointSquareOccupiedRule());
             _rules.Add(new CannotMoveToSameSquareRule());
+            _rules.Add(new CannotMoveThroughPiecesRule());
         }
 
         public bool IsMoveValid(IChessBoard board, Move move)
