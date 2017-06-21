@@ -70,28 +70,28 @@ namespace Gfi.Hiring {
 			_board.IsMoveValid(move).ReturnsForAnyArgs(_ruleset.IsMoveValid(_board, move));
 
 			Assert.That(_board.IsMoveValid(move), Is.False);
-        }
+		}
 
-        [Test]
-        public void Bishop_Can_Move_On_X_Equals_Y()
-        {
-            var piece = Substitute.For<IChessPiece>();
-            Move move = new Move(piece, 0, 0, 1, 1);
-            _board.IsMoveValid(move).ReturnsForAnyArgs(x => { return _ruleset.IsMoveValid(_board, move); });
+		[Test]
+		public void Bishop_Can_Move_On_X_Equals_Y()
+		{
+			var piece = Substitute.For<IChessPiece>();
+			Move move = new Move(piece, 0, 0, 1, 1);
+			_board.IsMoveValid(move).ReturnsForAnyArgs(x => { return _ruleset.IsMoveValid(_board, move); });
 
 
-            bool result = _board.IsMoveValid(move);
-            Assert.That(_board.IsMoveValid(move), Is.True);
-        }
+			bool result = _board.IsMoveValid(move);
+			Assert.That(_board.IsMoveValid(move), Is.True);
+		}
 
-        [Test]
-        public void Bishop_Can_Move_On_X_Equals_Minus_Y()
-        {
-            var piece = Substitute.For<IChessPiece>();
-            Move move = new Move(piece, 0, 1, 1, 0);
-            _board.IsMoveValid(move).ReturnsForAnyArgs(x => { return _ruleset.IsMoveValid(_board, move); });
+		[Test]
+		public void Bishop_Can_Move_On_X_Equals_Minus_Y()
+		{
+			var piece = Substitute.For<IChessPiece>();
+			Move move = new Move(piece, 0, 1, 1, 0);
+			_board.IsMoveValid(move).ReturnsForAnyArgs(x => { return _ruleset.IsMoveValid(_board, move); });
 
-            Assert.That(_board.IsMoveValid(move), Is.True);
-        }
-    }
+			Assert.That(_board.IsMoveValid(move), Is.True);
+		}
+	}
 }

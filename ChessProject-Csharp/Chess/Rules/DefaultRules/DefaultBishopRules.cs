@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Gfi.Hiring {
     /// <summary>
-    /// Standard rules for a normal chess pawn
+    /// Standard rules for a normal chess bishop
     /// </summary>
     internal class DefaultBishopRules : UniversalRules {
         
